@@ -2,4 +2,4 @@
 
 Deployed website: https://agschmid.github.io/pui-homework-advanced/
 
-Repository link: https://github.com/agschmid/pui-homework-advanced/
+Repository link: https://github.com/agschmid/pui-homework-advanced/tree/gh-pages
