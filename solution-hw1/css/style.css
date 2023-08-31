@@ -146,6 +146,6 @@ select {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61.84 22.79"><defs><style> .cls-1 { fill: "black"; } </style></defs><polygon class="cls-1" points="0 0 30.92 22.79 61.84 0 0 0"/></svg>') 
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61.84 22.79"><defs><style> .cls-1 { fill: #000; } </style></defs><polygon class="cls-1" points="0 0 30.92 22.79 61.84 0 0 0"/></svg>') 
                 98% / 10% no-repeat #fff;
 }
