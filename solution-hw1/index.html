@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Bun Bun Bake Shop</title>
     
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Barlow+Condensed">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Barlow+Condensed:200,600">
     <link rel="stylesheet" href="./css/style.css">
   </head>
 
@@ -12,12 +12,12 @@
     <div class="header">
       <img src="../assets/logo/logo-01.svg" alt="A cinnamon bun drawing next to the text 'Bun bun bake shop'" width="300">
       <div class="header-right">
-        <nav>
-          <button class="menu-button highlighted">PRODUCTS</button>
-          <button class="menu-button">CART</button>
+        <nav class="larger-font">
+          <a class="highlighted">PRODUCTS</a>
+          <a>CART</a>
         </nav>
         <div class="line"></div>
-        <span>Our hand-made cinnamon rolls</span>
+        <span class="bold">Our hand-made cinnamon rolls</span>
       </div>
     </div>
 
@@ -25,7 +25,7 @@
 
       <article class="item">
         <img src="../assets/products/original-cinnamon-roll.jpg" alt="A frosted cinnamon roll on a plate with cinnamon sticks">
-        <h2 class="item-name">Original cinnamon roll</h2>
+        <h2 class="larger-font bold">Original cinnamon roll</h2>
 
         <div class="item-info">
 
@@ -37,16 +37,16 @@
             <option value="chocolate">Double chocolate</option>
           </select>
 
-          <label>Pack Size:</label>
-          <div class="pack-radio">
+          <label for="og-pack">Pack Size:</label>
+          <div class="pack-radio" id="og-pack">
             <input type="radio" id="og-pack1" name="og" value="1" checked> <label for="og-pack1">1</label>
             <input type="radio" id="og-pack3" name="og" value="3"><label for="og-pack3">3</label>
             <input type="radio" id="og-pack6" name="og" value="6"><label for="og-pack6">6</label>
             <input type="radio" id="og-pack12" name="og" value="12"><label for="og-pack12">12</label>
           </div>
 
-          <span class="price">$2.49</span>
-          <button class="cart">Add to Cart</button>
+          <span class="larger-font bold">$2.49</span>
+          <button class="cart bold">Add to Cart</button>
 
         </div>
       </article>

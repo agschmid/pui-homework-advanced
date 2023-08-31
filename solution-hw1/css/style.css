@@ -1,6 +1,21 @@
 * {
     font-family: "Barlow Condensed", sans-serif;
+    margin-right: 0;
 }
+
+.larger-font {
+    font-size: 18px;
+}
+
+.bold{
+    font-weight: 600;
+}
+
+.highlighted{
+    background-color: yellow;
+    font-weight: 600;
+}
+
 
 .header{
     display: flex;
@@ -13,13 +28,8 @@
     background-color: black;
 }
 
-.header p{
+.header span{
     font-size: 30px;
-    margin: 0;
-}
-
-.header img{
-    width: 300px;
 }
 
 .header-right{
@@ -29,40 +39,17 @@
     justify-content: space-between;
 }
 
-
 nav{
     display: flex;
     justify-content: right;
     align-items: center;
     margin-right: 100px;
     padding-top: 40px;
-}
-
-.menu-button{
-    background-color: transparent;
-    border: none;
-    font-size: 18px;
+    gap: 20px;
 }
 
 .top-menu button:hover {
     text-decoration: underline;
-}
-
-.highlighted{
-    background-color: yellow;
-    font-weight: 1000;
-}
-
-.cart{
-    background-color: white;
-    border: 1px solid black;
-    font-size: 14px;
-    text-align: center;
-    height: fit-content
-}
-
-.cart:hover{
-    background-color: yellow;
 }
 
 main{
@@ -70,6 +57,18 @@ main{
     grid-template-columns: 1fr 1fr 1fr;
     gap: 50px;
     margin: 50px;
+}
+
+.cart{
+    background-color: white;
+    border: 1px solid black;
+    font-size: 14px;
+    text-align: center;
+    height: 100%;
+}
+
+.cart:hover{
+    background-color: yellow;
 }
 
 .item{
@@ -85,34 +84,22 @@ main{
 .item-info {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    gap: 15px;
+    gap: 5px;
+    align-items: center;
 }
-
 
 .pack-radio{
     display: flex;
     width: 100%;
+    height: 100%;
     justify-content: space-between;
 }
 
-.item-name {
-    font-size: 18px;
-    font-weight: 600;
-}
-
-button {
+button, a{
     cursor: pointer;
 }
 
-.price {
-    font-size: 22px;
-    font-weight: 800;
-    margin: 0;
-}
-
-
-
-/* Test using this https://stackoverflow.com/questions/18166664/text-only-radio-buttons */
+/* Modified from this https://stackoverflow.com/questions/18166664/text-only-radio-buttons */
 
 input[type="radio"] {
     display:none;
@@ -132,11 +119,8 @@ input[type="radio"]:checked + label {
     background-color: lightgray;
 }
 
-
-
-
-/* Taken from this https://stackoverflow.com/questions/1895476/how-do-i-style-a-select-dropdown-with-only-css */
-/* and this https://www.svgbackgrounds.com/how-to-add-svgs-with-css-background-image/ */
+/* Modified from this https://stackoverflow.com/questions/1895476/how-do-i-style-a-select-dropdown-with-only-css */
+/* and used this tool https://www.svgbackgrounds.com/how-to-add-svgs-with-css-background-image/ */
 select {
     padding: 2px 6px 3px 6px;
     width: 100%;
@@ -146,6 +130,6 @@ select {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61.84 22.79"><defs><style> .cls-1 { fill: #000; } </style></defs><polygon class="cls-1" points="0 0 30.92 22.79 61.84 0 0 0"/></svg>') 
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61.84 22.79"><polygon class="cls-1" points="0 0 30.92 22.79 61.84 0 0 0"/></svg>') 
                 98% / 10% no-repeat #fff;
 }
