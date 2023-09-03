@@ -1,10 +1,15 @@
 * {
-    font-family: "Barlow Condensed", sans-serif;
-    margin-right: 0;
+    font: 18px "Barlow Condensed", sans-serif;
+    box-sizing: border-box;
 }
 
+
 .larger-font {
-    font-size: 18px;
+    font-size: 25px !important;
+}
+
+.largest-font{
+    font-size: 35px;
 }
 
 .bold{
@@ -13,26 +18,21 @@
 
 .highlighted{
     background-color: yellow;
-    font-weight: 600;
 }
 
-
-.header{
+#header-group{
     display: flex;
     gap: 20px;
+    margin: 50px 0px 0px 30px;
 }
 
-.line{
+.horizontal-line{
     width: 100%;
     height: 3px;
     background-color: black;
 }
 
-.header span{
-    font-size: 30px;
-}
-
-.header-right{
+header {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -44,32 +44,28 @@ nav{
     justify-content: right;
     align-items: center;
     margin-right: 100px;
-    padding-top: 40px;
-    gap: 20px;
+    gap: 100px;
 }
 
-.top-menu button:hover {
-    text-decoration: underline;
+nav a:hover,
+.cart:hover {
+    background-color: yellow;
 }
 
 main{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 50px;
-    margin: 50px;
+    gap: 120px 100px;
+    margin: 70px 110px 120px 110px;
 }
 
 .cart{
     background-color: white;
     border: 1px solid black;
-    font-size: 14px;
     text-align: center;
     height: 100%;
 }
 
-.cart:hover{
-    background-color: yellow;
-}
 
 .item{
     display: flex;
@@ -84,7 +80,7 @@ main{
 .item-info {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    gap: 5px;
+    gap: 14px;
     align-items: center;
 }
 
@@ -99,7 +95,8 @@ button, a{
     cursor: pointer;
 }
 
-/* Modified from this https://stackoverflow.com/questions/18166664/text-only-radio-buttons */
+
+/* Modified the radio style from this https://stackoverflow.com/questions/18166664/text-only-radio-buttons */
 
 input[type="radio"] {
     display:none;
@@ -110,8 +107,8 @@ input[type="radio"] + label{
     align-items: center;
     justify-content: center;
     border: 1px solid black;
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     cursor: pointer;
 }
 
@@ -120,11 +117,10 @@ input[type="radio"]:checked + label {
 }
 
 /* Modified from this https://stackoverflow.com/questions/1895476/how-do-i-style-a-select-dropdown-with-only-css */
-/* and used this tool https://www.svgbackgrounds.com/how-to-add-svgs-with-css-background-image/ */
+/* and used this tool to convert svg to url https://www.svgbackgrounds.com/how-to-add-svgs-with-css-background-image/ */
 select {
     padding: 2px 6px 3px 6px;
     width: 100%;
-    font-size: 14px;
     border: 1px solid black;
     border-radius: 0px;
     -webkit-appearance: none;
