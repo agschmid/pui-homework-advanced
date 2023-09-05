@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Bun Bun Bake Shop</title>
     
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Barlow+Condensed:200,600">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,600">
     <link rel="stylesheet" href="./css/style.css">
   </head>
 
@@ -13,8 +13,8 @@
       <img src="../assets/logo/logo-01.svg" alt="A cinnamon bun drawing next to the text 'Bun bun bake shop'" width="300">
       <header>
         <nav>
-          <a class="bold larger-font">PRODUCTS</a>
-          <a class="larger-font">CART</a>
+          <a class="bold larger-font hover-hl">PRODUCTS</a>
+          <a class="larger-font hover-hl">CART</a>
         </nav>
         <div class="horizontal-line"></div>
         <span class="largest-font">Our hand-made cinnamon rolls</span>
@@ -29,24 +29,30 @@
 
         <div class="item-info">
 
-          <label for="og-glazing">Glazing:</label>
-          <select name="og-glazing" id="og-glazing">
-            <option value="orginal">Keep original</option>
-            <option value="sugar">Sugar milk</option>
-            <option value="vanilla">Vanilla milk</option>
-            <option value="chocolate">Double chocolate</option>
-          </select>
-
-          <span>Pack Size:</span>
-          <div class="pack-radio" id="og-pack">
-            <input type="radio" id="og-pack1" name="og" value="1" checked> <label for="og-pack1">1</label>
-            <input type="radio" id="og-pack3" name="og" value="3"><label for="og-pack3">3</label>
-            <input type="radio" id="og-pack6" name="og" value="6"><label for="og-pack6">6</label>
-            <input type="radio" id="og-pack12" name="og" value="12"><label for="og-pack12">12</label>
+          <div class="item-row">
+            <label for="og-glazing">Glazing:</label>
+            <select name="og-glazing" id="og-glazing" class="item-choice">
+              <option value="orginal">Keep original</option>
+              <option value="sugar">Sugar milk</option>
+              <option value="vanilla">Vanilla milk</option>
+              <option value="chocolate">Double chocolate</option>
+            </select>
           </div>
 
-          <span class="larger-font bold">$2.49</span>
-          <button class="cart bold">Add to Cart</button>
+          <div class="item-row">
+            <span>Pack Size:</span>
+            <div class="pack-radio item-choice" id="og-pack">
+              <input type="radio" id="og-pack1" name="og" value="1" checked> <label for="og-pack1">1</label>
+              <input type="radio" id="og-pack3" name="og" value="3"><label for="og-pack3">3</label>
+              <input type="radio" id="og-pack6" name="og" value="6"><label for="og-pack6">6</label>
+              <input type="radio" id="og-pack12" name="og" value="12"><label for="og-pack12">12</label>
+            </div>
+          </div>
+
+          <div class="item-row">
+            <span class="larger-font bold">$2.49</span>
+            <button class="cart bold hover-hl item-choice">Add to Cart</button>
+          </div>
 
         </div>
       </article>
@@ -59,24 +65,30 @@
 
         <div class="item-info">
 
-          <label for="apple-glazing">Glazing:</label>
-          <select name="apple-glazing" id="apple-glazing">
-            <option value="orginal">Keep original</option>
-            <option value="sugar">Sugar milk</option>
-            <option value="vanilla">Vanilla milk</option>
-            <option value="chocolate">Double chocolate</option>
-          </select>
-
-          <span>Pack Size:</span>
-          <div class="pack-radio" id="apple-pack">
-            <input type="radio" id="apple-pack1" name="apple" value="1" checked> <label for="apple-pack1">1</label>
-            <input type="radio" id="apple-pack3" name="apple" value="3"><label for="apple-pack3">3</label>
-            <input type="radio" id="apple-pack6" name="apple" value="6"><label for="apple-pack6">6</label>
-            <input type="radio" id="apple-pack12" name="apple" value="12"><label for="apple-pack12">12</label>
+          <div class="item-row">
+            <label for="apple-glazing">Glazing:</label>
+            <select name="apple-glazing" id="apple-glazing" class="item-choice">
+              <option value="orginal">Keep original</option>
+              <option value="sugar">Sugar milk</option>
+              <option value="vanilla">Vanilla milk</option>
+              <option value="chocolate">Double chocolate</option>
+            </select>
           </div>
 
-          <span class="larger-font bold">$2.49</span>
-          <button class="cart bold">Add to Cart</button>
+          <div class="item-row">
+            <span>Pack Size:</span>
+            <div class="pack-radio item-choice" id="apple-pack">
+              <input type="radio" id="apple-pack1" name="apple" value="1" checked> <label for="apple-pack1">1</label>
+              <input type="radio" id="apple-pack3" name="apple" value="3"><label for="apple-pack3">3</label>
+              <input type="radio" id="apple-pack6" name="apple" value="6"><label for="apple-pack6">6</label>
+              <input type="radio" id="apple-pack12" name="apple" value="12"><label for="apple-pack12">12</label>
+            </div>
+          </div>
+
+          <div class="item-row">
+            <span class="larger-font bold">$2.49</span>
+            <button class="cart bold hover-hl item-choice">Add to Cart</button>
+          </div>
 
         </div>
       </article>
@@ -87,24 +99,30 @@
 
         <div class="item-info">
 
-          <label for="raisin-glazing">Glazing:</label>
-          <select name="raisin-glazing" id="raisin-glazing">
-            <option value="orginal">Keep original</option>
-            <option value="sugar">Sugar milk</option>
-            <option value="vanilla">Vanilla milk</option>
-            <option value="chocolate">Double chocolate</option>
-          </select>
-
-          <span>Pack Size:</span>
-          <div class="pack-radio" id="raisin-pack">
-            <input type="radio" id="raisin-pack1" name="raisin" value="1" checked> <label for="raisin-pack1">1</label>
-            <input type="radio" id="raisin-pack3" name="raisin" value="3"><label for="raisin-pack3">3</label>
-            <input type="radio" id="raisin-pack6" name="raisin" value="6"><label for="raisin-pack6">6</label>
-            <input type="radio" id="raisin-pack12" name="raisin" value="12"><label for="raisin-pack12">12</label>
+          <div class="item-row">
+            <label for="raisin-glazing">Glazing:</label>
+            <select name="raisin-glazing" id="raisin-glazing" class="item-choice">
+              <option value="orginal">Keep original</option>
+              <option value="sugar">Sugar milk</option>
+              <option value="vanilla">Vanilla milk</option>
+              <option value="chocolate">Double chocolate</option>
+            </select>
           </div>
 
-          <span class="larger-font bold">$2.49</span>
-          <button class="cart bold">Add to Cart</button>
+          <div class="item-row">
+            <span>Pack Size:</span>
+            <div class="pack-radio item-choice" id="raisin-pack">
+              <input type="radio" id="raisin-pack1" name="raisin" value="1" checked> <label for="raisin-pack1">1</label>
+              <input type="radio" id="raisin-pack3" name="raisin" value="3"><label for="raisin-pack3">3</label>
+              <input type="radio" id="raisin-pack6" name="raisin" value="6"><label for="raisin-pack6">6</label>
+              <input type="radio" id="raisin-pack12" name="raisin" value="12"><label for="raisin-pack12">12</label>
+            </div>
+          </div>
+
+          <div class="item-row">
+            <span class="larger-font bold">$2.49</span>
+            <button class="cart bold hover-hl item-choice">Add to Cart</button>
+          </div>
 
         </div>
       </article>
@@ -115,24 +133,30 @@
 
         <div class="item-info">
 
-          <label for="walnut-glazing">Glazing:</label>
-          <select name="walnut-glazing" id="walnut-glazing">
-            <option value="orginal">Keep original</option>
-            <option value="sugar">Sugar milk</option>
-            <option value="vanilla">Vanilla milk</option>
-            <option value="chocolate">Double chocolate</option>
-          </select>
-
-          <span>Pack Size:</span>
-          <div class="pack-radio" id="walnut-pack">
-            <input type="radio" id="walnut-pack1" name="walnut" value="1" checked> <label for="walnut-pack1">1</label>
-            <input type="radio" id="walnut-pack3" name="walnut" value="3"><label for="walnut-pack3">3</label>
-            <input type="radio" id="walnut-pack6" name="walnut" value="6"><label for="walnut-pack6">6</label>
-            <input type="radio" id="walnut-pack12" name="walnut" value="12"><label for="walnut-pack12">12</label>
+          <div class="item-row">
+            <label for="walnut-glazing">Glazing:</label>
+            <select name="walnut-glazing" id="walnut-glazing" class="item-choice">
+              <option value="orginal">Keep original</option>
+              <option value="sugar">Sugar milk</option>
+              <option value="vanilla">Vanilla milk</option>
+              <option value="chocolate">Double chocolate</option>
+            </select>
           </div>
 
-          <span class="larger-font bold">$2.49</span>
-          <button class="cart bold">Add to Cart</button>
+          <div class="item-row">
+            <span>Pack Size:</span>
+            <div class="pack-radio item-choice" id="walnut-pack">
+              <input type="radio" id="walnut-pack1" name="walnut" value="1" checked> <label for="walnut-pack1">1</label>
+              <input type="radio" id="walnut-pack3" name="walnut" value="3"><label for="walnut-pack3">3</label>
+              <input type="radio" id="walnut-pack6" name="walnut" value="6"><label for="walnut-pack6">6</label>
+              <input type="radio" id="walnut-pack12" name="walnut" value="12"><label for="walnut-pack12">12</label>
+            </div>
+          </div>
+
+          <div class="item-row">
+            <span class="larger-font bold">$2.49</span>
+            <button class="cart bold hover-hl item-choice">Add to Cart</button>
+          </div>
 
         </div>
       </article>
@@ -143,24 +167,30 @@
 
         <div class="item-info">
 
-          <label for="choc-glazing">Glazing:</label>
-          <select name="choc-glazing" id="choc-glazing">
-            <option value="orginal">Keep original</option>
-            <option value="sugar">Sugar milk</option>
-            <option value="vanilla">Vanilla milk</option>
-            <option value="chocolate">Double chocolate</option>
-          </select>
-
-          <span>Pack Size:</span>
-          <div class="pack-radio" id="choc-pack">
-            <input type="radio" id="choc-pack1" name="choc" value="1" checked> <label for="choc-pack1">1</label>
-            <input type="radio" id="choc-pack3" name="choc" value="3"><label for="choc-pack3">3</label>
-            <input type="radio" id="choc-pack6" name="choc" value="6"><label for="choc-pack6">6</label>
-            <input type="radio" id="choc-pack12" name="choc" value="12"><label for="choc-pack12">12</label>
+          <div class="item-row">
+            <label for="choc-glazing">Glazing:</label>
+            <select name="choc-glazing" id="choc-glazing" class="item-choice">
+              <option value="orginal">Keep original</option>
+              <option value="sugar">Sugar milk</option>
+              <option value="vanilla">Vanilla milk</option>
+              <option value="chocolate">Double chocolate</option>
+            </select>
           </div>
 
-          <span class="larger-font bold">$2.49</span>
-          <button class="cart bold">Add to Cart</button>
+          <div class="item-row">
+            <span>Pack Size:</span>
+            <div class="pack-radio item-choice" id="choc-pack">
+              <input type="radio" id="choc-pack1" name="choc" value="1" checked> <label for="choc-pack1">1</label>
+              <input type="radio" id="choc-pack3" name="choc" value="3"><label for="choc-pack3">3</label>
+              <input type="radio" id="choc-pack6" name="choc" value="6"><label for="choc-pack6">6</label>
+              <input type="radio" id="choc-pack12" name="choc" value="12"><label for="choc-pack12">12</label>
+            </div>
+          </div>
+
+          <div class="item-row">
+            <span class="larger-font bold">$2.49</span>
+            <button class="cart bold hover-hl item-choice">Add to Cart</button>
+          </div>
 
         </div>
       </article>
@@ -171,24 +201,30 @@
 
         <div class="item-info">
 
-          <label for="sb-glazing">Glazing:</label>
-          <select name="sb-glazing" id="sb-glazing">
-            <option value="orginal">Keep original</option>
-            <option value="sugar">Sugar milk</option>
-            <option value="vanilla">Vanilla milk</option>
-            <option value="chocolate">Double chocolate</option>
-          </select>
-
-          <span>Pack Size:</span>
-          <div class="pack-radio" id="sb-pack">
-            <input type="radio" id="sb-pack1" name="sb" value="1" checked> <label for="sb-pack1">1</label>
-            <input type="radio" id="sb-pack3" name="sb" value="3"><label for="sb-pack3">3</label>
-            <input type="radio" id="sb-pack6" name="sb" value="6"><label for="sb-pack6">6</label>
-            <input type="radio" id="sb-pack12" name="sb" value="12"><label for="sb-pack12">12</label>
+          <div class="item-row">
+            <label for="sb-glazing">Glazing:</label>
+            <select name="sb-glazing" id="sb-glazing" class="item-choice">
+              <option value="orginal">Keep original</option>
+              <option value="sugar">Sugar milk</option>
+              <option value="vanilla">Vanilla milk</option>
+              <option value="chocolate">Double chocolate</option>
+            </select>
           </div>
 
-          <span class="larger-font bold">$2.49</span>
-          <button class="cart bold">Add to Cart</button>
+          <div class="item-row">
+            <span>Pack Size:</span>
+            <div class="pack-radio item-choice" id="sb-pack">
+              <input type="radio" id="sb-pack1" name="sb" value="1" checked> <label for="sb-pack1">1</label>
+              <input type="radio" id="sb-pack3" name="sb" value="3"><label for="sb-pack3">3</label>
+              <input type="radio" id="sb-pack6" name="sb" value="6"><label for="sb-pack6">6</label>
+              <input type="radio" id="sb-pack12" name="sb" value="12"><label for="sb-pack12">12</label>
+            </div>
+          </div>
+
+          <div class="item-row">
+            <span class="larger-font bold">$2.49</span>
+            <button class="cart bold hover-hl item-choice">Add to Cart</button>
+          </div>
 
         </div>
       </article>
