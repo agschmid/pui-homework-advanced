@@ -26,10 +26,10 @@
     margin: 50px 0px 0px 30px;
 }
 
-.horizontal-line{
+hr{
     width: 100%;
-    height: 3px;
-    background-color: black;
+    border: none;
+    border-top: 3px solid black;
 }
 
 header {
@@ -46,7 +46,6 @@ nav{
     margin-right: 100px;
     gap: 100px;
 }
-
 
 main{
     display: flex;
@@ -109,12 +108,26 @@ button, a{
 }
 
 
-/* Modified the radio style from this https://stackoverflow.com/questions/18166664/text-only-radio-buttons */
+/* Modified the select drop down from this https://stackoverflow.com/questions/1895476/how-do-i-style-a-select-dropdown-with-only-css */
+/* and used this tool to convert svg to url https://www.svgbackgrounds.com/how-to-add-svgs-with-css-background-image/ */
+select {
+    padding: 2px 6px 3px 6px;
+    border: 1px solid black;
+    border-radius: 0px;
+    appearance: none;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61.84 22.79"><polygon class="cls-1" points="0 0 30.92 22.79 61.84 0 0 0"/></svg>') 
+                98% / 10% no-repeat #fff;
+}
 
+
+/* Modified the following radio style from this https://stackoverflow.com/questions/18166664/text-only-radio-buttons */
+
+/* Hides the default radio display */
 input[type="radio"] {
     display:none;
 }
 
+/* Selects the label immediately after each radio input*/
 input[type="radio"] + label{
     display: flex;
     align-items: center;
@@ -125,18 +138,7 @@ input[type="radio"] + label{
     cursor: pointer;
 }
 
+/* Makes the label after the checked radio gray*/
 input[type="radio"]:checked + label {
     background-color: lightgray;
-}
-
-
-/* Modified from this https://stackoverflow.com/questions/1895476/how-do-i-style-a-select-dropdown-with-only-css */
-/* and used this tool to convert svg to url https://www.svgbackgrounds.com/how-to-add-svgs-with-css-background-image/ */
-select {
-    padding: 2px 6px 3px 6px;
-    border: 1px solid black;
-    border-radius: 0px;
-    appearance: none;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61.84 22.79"><polygon class="cls-1" points="0 0 30.92 22.79 61.84 0 0 0"/></svg>') 
-                98% / 10% no-repeat #fff;
 }
