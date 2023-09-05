@@ -1,15 +1,15 @@
 * {
-    font: 14px "Noto Sans JP", sans-serif;
+    font: 16px "Noto Sans JP", sans-serif;
     box-sizing: border-box;
     margin: 0;
 }
 
 .larger-font {
-    font-size: 20px;
+    font-size: 25px;
 }
 
 .largest-font{
-    font-size: 30px;
+    font-size: 35px;
 }
 
 .bold{
@@ -23,13 +23,13 @@
 .header-group{
     display: flex;
     gap: 20px;
-    margin: 50px 0px 0px 30px;
+    margin: 30px 0px 0px 20px;
 }
 
 hr{
     width: 100%;
     border: none;
-    border-top: 3px solid black;
+    border-top: 5px solid black;
 }
 
 header {
@@ -43,6 +43,7 @@ nav{
     display: flex;
     justify-content: right;
     align-items: center;
+    margin-top: 20px;
     margin-right: 100px;
     gap: 100px;
 }
@@ -51,14 +52,15 @@ main{
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
-    margin: 50px 100px;
-    gap: 50px;
+    margin: 0px 100px;
+    gap: 20px;
 }
 
 .item{
     display: flex;
     flex-direction: column;
-    width: 250px;
+    width: 280px;
+    margin-top: 80px;
 }
 
 .item img{
@@ -67,7 +69,7 @@ main{
 }
 
 .item h1 {
-    margin: 10px 0px;
+    margin: 10px 0px 20px 0px;
 }
 
 .item-info {
@@ -79,7 +81,6 @@ main{
 
 .item-choice {
     width: 60%;
-    height: 30px;
 }
 
 .item-row{
@@ -99,8 +100,9 @@ main{
 
 .cart{
     background-color: white;
-    border: 1px solid black;
+    border: 2px solid black;
     text-align: center;
+    height: 50px;
 }
 
 button, a{
@@ -112,9 +114,10 @@ button, a{
 /* and used this tool to convert svg to url https://www.svgbackgrounds.com/how-to-add-svgs-with-css-background-image/ */
 select {
     padding: 2px 6px 3px 6px;
-    border: 1px solid black;
+    border: 2px solid black;
     border-radius: 0px;
     appearance: none;
+    height: 35px;
     background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61.84 22.79"><polygon class="cls-1" points="0 0 30.92 22.79 61.84 0 0 0"/></svg>') 
                 98% / 10% no-repeat #fff;
 }
@@ -132,9 +135,9 @@ input[type="radio"] + label{
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid black;
-    width: 25px;
-    height: 25px;
+    border: 2px solid black;
+    width: 35px;
+    height: 35px;
     cursor: pointer;
 }
 
