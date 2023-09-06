@@ -51,16 +51,16 @@ nav{
 main{
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
-    margin: 0px 105px 50px 115px;
-    gap: 20px;
+    justify-content: center;
+    margin: 0px 80px 50px 80px;
+    gap: 70px;
 }
 
 .item{
     display: flex;
     flex-direction: column;
     width: 287px;
-    margin-top: 80px;
+    margin-top: 60px;
 }
 
 .item img{
