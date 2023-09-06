@@ -155,12 +155,20 @@ input[type="radio"]:checked + label {
         margin-left: 0px;
     }
 
+    .header-group img {
+        width: 80%;
+    }
+
     header {
         align-items: center;
     }
 
     nav {
         margin: 0px 0px 20px 0px; 
+    }
+
+    .largest-font {
+        font-size: 25px;
     }
 
     .item {
