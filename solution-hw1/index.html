@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8">
     <title>Bun Bun Bake Shop</title>
-    
-    <link rel="icon" href="../solution-hw0/favicon.ico">
+    <link rel="icon" href="../solution-hw0/favicon.ico"> <!-- Added favicon, as chrome was trying to load one and giving an error -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,600">
     <link rel="stylesheet" href="./css/style.css">
   </head>
 
   <body>
-    <div class="header-group">
+
+    <div class="header-group"> <!-- Header group class at the top of the page so it can include the logo -->
       <img src="../assets/logo/logo-01.svg" alt="A cinnamon bun drawing next to the text 'Bun bun bake shop'" width="400">
       <header>
         <nav>
@@ -22,17 +22,18 @@
       </header>
     </div>
 
-    <main> 
+    
+    <main> <!-- Main section of page using 'item' divs for each item card -->
 
       <div class="item">
         <img src="../assets/products/original-cinnamon-roll.jpg" width="280" alt="A frosted cinnamon roll on a plate with cinnamon sticks">
         <h1 class="larger-font bold">Original cinnamon roll</h1>
 
-        <div class="item-info">
+        <div class="item-info"> <!-- container of information for each item  -->
 
-          <div class="item-row">
+          <div class="item-row">  <!-- container for the row of information -->
             <label for="og-glazing">Glazing:</label>
-            <select name="og-glazing" id="og-glazing" class="item-choice">
+            <select name="og-glazing" id="og-glazing" class="item-choice"> <!-- select container, using id so it's related to the label -->
               <option value="orginal">Keep original</option>
               <option value="sugar">Sugar milk</option>
               <option value="vanilla">Vanilla milk</option>
@@ -42,7 +43,7 @@
 
           <div class="item-row">
             <span>Pack Size:</span>
-            <div class="pack-radio item-choice" id="og-pack">
+            <div class="pack-radio item-choice" id="og-pack">  <!-- radio container, using id so that each radio is distinct from the others -->
               <input type="radio" id="og-pack1" name="og" value="1" checked> <label for="og-pack1">1</label>
               <input type="radio" id="og-pack3" name="og" value="3"><label for="og-pack3">3</label>
               <input type="radio" id="og-pack6" name="og" value="6"><label for="og-pack6">6</label>
