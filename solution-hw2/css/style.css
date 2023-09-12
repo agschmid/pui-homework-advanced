@@ -51,11 +51,51 @@ header {
 nav {
     display: flex;
     justify-content: right;
-    align-items: center;
-    margin-top: 20px;
+    margin-top: 60px;
     margin-right: 100px;
     gap: 100px;
 }
+
+
+/* Cart area */ 
+/* TO DO - this area is new, so check it! */
+
+.cart-area {
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    width: 200px;
+    height: 80px; 
+}
+
+.cart-constant {
+    text-align: right;
+    min-width: 100px;
+    margin-right: 50px;
+}
+
+.cart-area ul {
+    padding-top: 10px;
+    list-style-type: none;
+    padding: 0;
+}
+
+.cart-popup {
+    position: absolute;
+    background-color: white;
+    border: 2px solid black;
+    width: 200px;
+    min-height: 150px;
+    margin-top: 30px;
+    padding: 5px;
+    opacity: 0;
+    transition: opacity 0.2s linear
+}
+
+.fade-in {
+    opacity: 1;
+}
+
 
 
 /* Main page styling*/
