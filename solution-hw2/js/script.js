@@ -1,11 +1,9 @@
 // Creating a Roll class that can be reused for each purchase -> TODO may need to swap to an object or object constructor
-class Roll {
-    constructor(type, price, glazing, packSize) {
-        this.type = type;
-        this.glazing = glazing;
-        this.packSize = packSize;
-        this.price = price;
-    }
+function Roll(type, price, glazing, packSize) {
+    this.type = type;
+    this.glazing = glazing;
+    this.packSize = packSize;
+    this.price = price;
 }
 
 // Construct objects for the six rolls, and an object of them so I can access with their ID's in the html - TO DO -> confirm this is what is wanted
@@ -20,10 +18,10 @@ const rollTable ={["original"]: ogRoll, ["apple"]: appleRoll, ["raisin"]: raisin
 // An empty list of rolls for the cart
 let cartList = [];
 
-// // Making an object for the glaze adaption, where the key is the glaze, and the pair is the price adaption
+// Making an object for the glaze adaption, where the key is the glaze, and the pair is the price adaption
 const glazeAdaption = {["Keep original"]: 0, ["Sugar milk"]: 0, ["Vanilla milk"]: 0.5, ["Double chocolate"]: 1.5};
 
-// // Making an object for the size adaption, where the key is the quantity, and the pair is the price adaption
+// Making an object for the size adaption, where the key is the quantity, and the pair is the price adaption
 const sizeAdaption = {1: 1, 3: 3, 6: 5, 12: 10};
 
 // Make the list of adaption objects, as it says in the instructions. TO DO: check what to do with this
@@ -36,7 +34,7 @@ let glazeElements = document.querySelectorAll('select.item-choice')
 // Loop over the glaze for each roll
 // TODO Probably need to dynamically fill the packsize aswell?
 for (i=0; i<glazeElements.length; i++) {
-    // Loop over each adaption to update element -> TO DO I got this online, find the resource
+    // Loop over each adaption to update element -> TO DO I got part of this online, find the resource
     for (let glaze in adaptions[0]) {
         let glazeOption = document.createElement("option");
         glazeOption.setAttribute('value', adaptions[0][glaze]);
@@ -49,6 +47,7 @@ for (i=0; i<glazeElements.length; i++) {
 }
 
 // Function to calculate the price of a given roll - not updating the price value as that is where I'm holding the base price TODO update base price usage if needbe
+// TO DO - confirm it's calculating the correct price
 function calculatePrice(roll){
     const basePrice = roll.price;
     const glazingPrice = glazeAdaption[roll.glazing]; //TO DO Might need to change to the adaptions list
@@ -113,14 +112,14 @@ function popUpCart(roll) {
     const popUpBox = document.querySelector(".cart-popup");
     const popUpList = document.querySelectorAll('.popup-list li');
 
-    // Populate each element of the popup list with the cinnamon roll information
+    // Populate each element of the popup list with the cinnamon roll information TO DO: is there a better way to do this?
     popUpList[0].textContent = `${roll.type} cinnamon roll`
     popUpList[1].textContent = `${roll.glazing}`
     popUpList[2].textContent = `Pack of ${roll.packSize}`
     popUpList[3].textContent = `Price: \$${calculatePrice(roll)}`
 
     popUpBox.classList.toggle('fade-in');
-    setTimeout(function() {popUpBox.classList.toggle('fade-in')}, 3000); //TO DO Check if this is allowed...
+    setTimeout(function() {popUpBox.classList.toggle('fade-in')}, 3000); //TO DO Check if this is allowed... also find the web resource I used
 }
 
 // Function that updates the price and quantity of the cart display
