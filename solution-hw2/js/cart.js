@@ -5,7 +5,7 @@ function Roll(type, price, glazing, packSize, elementID) {
     this.glazing = glazing;
     this.packSize = packSize;
     this.price = price;
-    this.elementID = elementID
+    this.elementID = elementID;
 }
 
 // Construct the six rolls using the Roll object
@@ -17,10 +17,10 @@ let chocRoll = new Roll ("Double chocolate", 3.99, "Keep original", 1, "choc");
 let strawberryRoll = new Roll ("Strawberry", 3.99, "Keep original", 1, "strawberry");
 
 // Create a dictionary for the rolls so it is easy to access each Roll with their id as the key
-const rollTable ={"original": ogRoll, "apple": appleRoll, "raisin": raisinRoll, "walnut": walnutRoll, "choc": chocRoll, "strawberry": strawberryRoll} 
+const rollTable ={"original": ogRoll, "apple": appleRoll, "raisin": raisinRoll, "walnut": walnutRoll, "choc": chocRoll, "strawberry": strawberryRoll};
 
 // Create an object containing the base price for each roll with their id as the key
-const rollBasePrice = {"original": 2.49, "apple": 3.40, "raisin": 2.99, "walnut": 3.49, "choc": 3.99, "strawberry": 3.99} 
+const rollBasePrice = {"original": 2.49, "apple": 3.40, "raisin": 2.99, "walnut": 3.49, "choc": 3.99, "strawberry": 3.99};
 
 // Create an empty list of rolls for the cart
 let cartList = [];
@@ -33,24 +33,24 @@ function calculatePrice(basePrice, glazingPrice, packPrice){
 // Updates page and roll value when glaze is changed.
 function glazingChange(element) {
     // Get elements from the html
-    const rollElement = element.closest(".item")
-    let glazingElement = element.options[element.selectedIndex] //Modified from here: https://stackoverflow.com/questions/14976495/get-selected-option-text-with-javascript
-    let packElement = rollElement.querySelector("input:checked")
+    const rollElement = element.closest(".item");
+    let glazingElement = element.options[element.selectedIndex]; //Modified from here: https://stackoverflow.com/questions/14976495/get-selected-option-text-with-javascript
+    let packElement = rollElement.querySelector("input:checked");
 
     // Get the relevant roll object
-    let roll = rollTable[rollElement.id]
+    let roll = rollTable[rollElement.id];
 
     // update the roll's glazing
-    roll.glazing = glazingElement.text 
+    roll.glazing = glazingElement.text;
 
     // calculate the new price
     const newPrice = calculatePrice(+rollBasePrice[rollElement.id], +glazingElement.value, +packElement.value); //note I'm using + at the beginning as it'll parse the values as numbers instead of strings
 
     // update the roll's price
-    roll.price = newPrice
+    roll.price = newPrice;
 
     // find the price element and push the new price
-    let priceElement = rollElement.querySelector(".price") 
+    let priceElement = rollElement.querySelector(".price");
     priceElement.innerText = "$ " + roll.price.toFixed(2);
 }
 
@@ -59,13 +59,13 @@ function glazingChange(element) {
 function packSizeChange(element) {
     // Get elements from the html
     const rollElement = element.closest(".item");
-    const glazingElementParent = rollElement.querySelector("select")
+    const glazingElementParent = rollElement.querySelector("select");
     let glazingElement = glazingElementParent.options[glazingElementParent.selectedIndex];
     
     let packElement = element.querySelector("input:checked");
 
     // Get the related roll object
-    let roll = rollTable[rollElement.id]
+    let roll = rollTable[rollElement.id];
 
     // update the roll's glazing
     roll.packSize = element.querySelector("input:checked + label").textContent; //Modified from here: https://stackoverflow.com/questions/9618504/how-to-get-the-selected-radio-button-s-value
@@ -74,20 +74,20 @@ function packSizeChange(element) {
     const newPrice = calculatePrice(+rollBasePrice[rollElement.id], +glazingElement.value, +packElement.value);
 
     // update the roll's price
-    roll.price = newPrice
+    roll.price = newPrice;
 
     // find the price element and push the new price
-    let priceElement = rollElement.querySelector(".price") 
+    let priceElement = rollElement.querySelector(".price");
     priceElement.innerText = "$ " + roll.price.toFixed(2);
 }
 
 // Make a deep clone of the roll, and add to the list "cartList"
 // NOTE: Doing this as otherwise it makes a soft copy and menu changes affect the rolls in the cart
 function addToCart(element) {
-    const roll = rollTable[element.closest(".item").id]
+    const roll = rollTable[element.closest(".item").id];
     const rollClone = structuredClone(roll);
-    cartList.push(rollClone)
-    popUpCart(rollClone)
+    cartList.push(rollClone);
+    popUpCart(rollClone);
     updateCartDisplay();
 }
 
@@ -98,10 +98,10 @@ function popUpCart(roll) {
     const popUpList = document.querySelectorAll('.popup-list li');
 
     // Populate each element of the popup list with the cinnamon roll information
-    popUpList[0].textContent = `${roll.type} cinnamon roll`
-    popUpList[1].textContent = `${roll.glazing}`
-    popUpList[2].textContent = `Pack of ${roll.packSize}`
-    popUpList[3].textContent = `Price: \$${roll.price.toFixed(2)}`
+    popUpList[0].textContent = `${roll.type} cinnamon roll`;
+    popUpList[1].textContent = `${roll.glazing}`;
+    popUpList[2].textContent = `Pack of ${roll.packSize}`;
+    popUpList[3].textContent = `Price: \$${roll.price.toFixed(2)}`;
 
     // Add the class that fades the box in, and then remove it after 3 seconds
     popUpBox.classList.add('fade-in');
@@ -120,6 +120,6 @@ function updateCartDisplay() {
     }
 
     // update the displayed values
-    cartElements[0].textContent = `${cartList.length} item`
-    cartElements[1].textContent = `Total: \$ ${totalCost.toFixed(2)}`
+    cartElements[0].textContent = `${cartList.length} item`;
+    cartElements[1].textContent = `Total: \$ ${totalCost.toFixed(2)}`;
 }

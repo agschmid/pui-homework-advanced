@@ -8,12 +8,12 @@ function Adaption(name, value) {
 const glazeAdaption = [new Adaption ("Keep original", 0), 
                         new Adaption ("Sugar milk", 0), 
                         new Adaption ("Vanila milk", 0.5), 
-                        new Adaption ("Double chocolate", 1.5) ]
+                        new Adaption ("Double chocolate", 1.5) ];
 
 const sizeAdaption = [new Adaption ("1", 1), 
                         new Adaption ("3", 3), 
                         new Adaption ("6", 5), 
-                        new Adaption ("12", 10) ]
+                        new Adaption ("12", 10) ];
 
 // Get the elements for the menus we need to populate
 let rollWebElement = document.querySelectorAll('.item');
@@ -23,18 +23,18 @@ for (i=0; i<rollWebElement.length; i++){
 
     // Get the elements
     let rollElement = rollWebElement[i];
-    let glazeElement = rollElement.querySelector('select')
-    let packElement = rollElement.querySelector('.pack-radio')
+    let glazeElement = rollElement.querySelector('select');
+    let packElement = rollElement.querySelector('.pack-radio');
     let rollName = rollElement.id;
 
     // Add each adaption into the glaze select element
     for (let adaption of glazeAdaption) {
-        addAdaptionToSelect(glazeElement, adaption)
+        addAdaptionToSelect(glazeElement, adaption);
     }
 
     // Add each adaption into the pack radio element
     for (let adaption of sizeAdaption) {
-        addAdaptionToRadio(packElement, adaption, rollName)
+        addAdaptionToRadio(packElement, adaption, rollName);
     }
 }
 
@@ -58,17 +58,17 @@ function addAdaptionToRadio(radioElement, adaption, rollName) {
     let packRadio = document.createElement("input");
 
     // Configure the input
-    packRadio.id = `${rollName}-pack${adaption.name}`
+    packRadio.id = `${rollName}-pack${adaption.name}`;
     packRadio.setAttribute('type', "radio");
     packRadio.setAttribute('name', rollName); 
-    packRadio.setAttribute('value', adaption.value)
+    packRadio.setAttribute('value', adaption.value);
 
     // Default check the first box
     if (adaption.name == "1") packRadio.checked=true;
 
     // Configure the label
-    let label = document.createElement("label")
-    label.setAttribute('for', packRadio.id)
+    let label = document.createElement("label");
+    label.setAttribute('for', packRadio.id);
     let labelText =  document.createTextNode(adaption.name);
 
     // Append each child 
