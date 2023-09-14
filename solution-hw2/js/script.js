@@ -1,40 +1,43 @@
-// Creating a Roll class that can be reused for each purchase -> TODO may need to swap to an object or object constructor
-function Roll(type, price, glazing, packSize) {
+// Creating a Roll class that can be reused for each purchase – added element ID to the class too
+function Roll(type, price, glazing, packSize, elementID) {
     this.type = type;
     this.glazing = glazing;
     this.packSize = packSize;
     this.price = price;
+    this.elementID = elementID
 }
 
-// Construct objects for the six rolls, and an object of them so I can access with their ID's in the html - TO DO -> confirm this is what is wanted
-let ogRoll = new Roll ("Original", 2.49, "Keep original", 1);
-let appleRoll = new Roll ("Apple", 3.49, "Keep original", 1);
-let raisinRoll = new Roll ("Raisin", 2.99, "Keep original", 1);
-let walnutRoll = new Roll ("Walnut", 3.49, "Keep original", 1);
-let chocRoll = new Roll ("Double chocolate", 3.99, "Keep original", 1);
-let strawberryRoll = new Roll ("Strawberry", 3.99, "Keep original", 1);
-const rollTable ={["original"]: ogRoll, ["apple"]: appleRoll, ["raisin"]: raisinRoll, ["walnut"]: walnutRoll, ["choc"]: chocRoll, ["strawberry"]: strawberryRoll}
+// Construct objects for the six rolls
+let ogRoll = new Roll ("Original", 2.49, "Keep original", 1, "original");
+let appleRoll = new Roll ("Apple", 3.49, "Keep original", 1, "apple");
+let raisinRoll = new Roll ("Raisin", 2.99, "Keep original", 1, "raisin");
+let walnutRoll = new Roll ("Walnut", 3.49, "Keep original", 1, "walnut");
+let chocRoll = new Roll ("Double chocolate", 3.99, "Keep original", 1, "choc");
+let strawberryRoll = new Roll ("Strawberry", 3.99, "Keep original", 1, "strawberry");
+const rollTable ={"original": ogRoll, "apple": appleRoll, "raisin": raisinRoll, "walnut": walnutRoll, "choc": chocRoll, "strawberry": strawberryRoll} 
 
 // An empty list of rolls for the cart
 let cartList = [];
 
-// Making an object for the glaze adaption, where the key is the glaze, and the pair is the price adaption
-const glazeAdaption = {["Keep original"]: 0, ["Sugar milk"]: 0, ["Vanilla milk"]: 0.5, ["Double chocolate"]: 1.5};
-
-// Making an object for the size adaption, where the key is the quantity, and the pair is the price adaption
+// Making an object for the glaze adaption and size adaptions, where the key is the selection, and the pair is the price adaption
+const glazeAdaption = {"Keep original": 0, "Sugar milk": 0, "Vanilla milk": 0.5, "Double chocolate": 1.5};
 const sizeAdaption = {1: 1, 3: 3, 6: 5, 12: 10};
 
 // Make the list of adaption objects, as it says in the instructions. TO DO: check what to do with this
 const adaptions = [glazeAdaption, sizeAdaption]
 
 // Get the elements for the menus we need to populate
-let glazeElements = document.querySelectorAll('select.item-choice')
+let rollWebElement = document.querySelectorAll('.item');
 
-// TODO Is this what they want... this seems silly
-// Loop over the glaze for each roll
-// TODO Probably need to dynamically fill the packsize aswell?
-for (i=0; i<glazeElements.length; i++) {
-    // Loop over each adaption to update element -> TO DO I got part of this online, find the resource
+// TO DO: edit this whole things cos it's a mess -> is there a clever way to do it with the adaptions?
+// Maybe it's to have a list of each one... so something like [{name: "Keep original", adaption: "0"}, etc... would be nicer to iterate over I think!]
+// Iterate over each roll item, and populate the menus with the information from the adaptions
+for (i=0; i<rollWebElement.length; i++){
+    let rollElement = rollWebElement[i];
+    let rollName = rollElement.id;
+    let glazeElement = rollElement.querySelector('select')
+    let packElement = rollElement.querySelector('.pack-radio')
+
     for (let glaze in adaptions[0]) {
         let glazeOption = document.createElement("option");
         glazeOption.setAttribute('value', adaptions[0][glaze]);
@@ -42,12 +45,34 @@ for (i=0; i<glazeElements.length; i++) {
         let glazeText = document.createTextNode(glaze);
         glazeOption.appendChild(glazeText);
 
-        glazeElements[i].appendChild(glazeOption);
+        glazeElement.appendChild(glazeOption);
+    }
+
+    for (let pack in adaptions[1]) {
+        let packRadio = document.createElement("input");
+        const packRadioId = `${rollName}-pack${pack}`
+        packRadio.id=packRadioId
+
+        packRadio.setAttribute('type', "radio");
+        packRadio.setAttribute('name', rollName); 
+        packRadio.setAttribute('value', pack)
+
+        if (pack == "1"){
+            packRadio.checked=true;
+        }
+
+        let label = document.createElement("label")
+        label.setAttribute('for', packRadioId)
+        let labelText =  document.createTextNode(pack);
+        label.appendChild(labelText);
+
+        packElement.appendChild(packRadio);
+        packElement.appendChild(label);
     }
 }
 
-// Function to calculate the price of a given roll - not updating the price value as that is where I'm holding the base price TODO update base price usage if needbe
-// TO DO - confirm it's calculating the correct price
+
+// Function to calculate the price of a given roll - note I am not updating the price value as that is where I'm holding the base price
 function calculatePrice(roll){
     const basePrice = roll.price;
     const glazingPrice = glazeAdaption[roll.glazing]; //TO DO Might need to change to the adaptions list
@@ -58,54 +83,49 @@ function calculatePrice(roll){
 // Function that updates page and roll value when glaze is changed.
 function glazingChange(element) {
     // work out which roll we're on
-    const rollParent = element.parentNode.parentNode.parentNode //TO DO WHYYYYYYYYYYY THIS IS TERRIBLE
-    const roll = getRollFromId(rollParent.id)
+    const rollElement = element.closest(".item")
+    let roll = rollTable[rollElement.id] //TO DO Make this a function?
 
     // update the roll's glazing
-    roll.glazing = element.options[element.selectedIndex].text //From here https://stackoverflow.com/questions/14976495/get-selected-option-text-with-javascript
+    roll.glazing = element.options[element.selectedIndex].text //Modified from here: https://stackoverflow.com/questions/14976495/get-selected-option-text-with-javascript
 
-    // calculate new prices
+    // calculate the new price
     const newPrice = calculatePrice(roll);
 
     // find the price element and push the new price
-    let priceElement = rollParent.querySelector(".price") 
+    let priceElement = rollElement.querySelector(".price") 
     priceElement.innerText = "$ " + newPrice;
 }
 
 // Function that updates page and roll value when glaze is changed.
-// TO DO Combine this with the glazingChange, as there's only one line difference
-// TO DO Ask if I can combine them?
 function packSizeChange(element) {
     // work out which roll we're on
-    const rollParent = element.parentNode.parentNode.parentNode //TO DO WHYYYYYYYYYYY THIS IS TERRIBLE
-    const roll = getRollFromId(rollParent.id)
+    const rollElement = element.closest(".item")
+    let roll = rollTable[rollElement.id] //TO DO Make this a function?
 
     // update the roll's glazing
-    roll.packSize = element.querySelector("input:checked").value;
+    roll.packSize = element.querySelector("input:checked").value;//Modified from here: https://stackoverflow.com/questions/9618504/how-to-get-the-selected-radio-button-s-value
 
     // calculate new prices
     const newPrice = calculatePrice(roll);
 
     // find the price element and push the new price
-    let priceElement = rollParent.querySelector(".price") 
+    let priceElement = rollElement.querySelector(".price") 
+
+    console.log(priceElement)
     priceElement.innerText = "$ " + newPrice;
 }
 
-// Make a deep clone of the roll, and at to the list "cartList" TO DO -> can I use this?
-// TO DO -> need to improve on getRollFromId as method. Maybe can combine into a function, or pass as a variable?
+// Make a deep clone of the roll, and at to the list "cartList"
+// Doing this as otherwise it makes a soft copy and menu changes affect the rolls in the cart
 function addToCart(element) {
-    const rollParent = element.parentNode.parentNode.parentNode
-    const roll = getRollFromId(rollParent.id)
+    const roll = rollTable[element.closest(".item").id] //TO DO Make this a function?
     const rollClone = structuredClone(roll);
     cartList.push(rollClone)
     popUpCart(rollClone)
     updateCartDisplay();
 }
 
-// Function that returns a roll element from it's ID TO DO: may need to replace with something more reasonable
-function getRollFromId(index){
-    return rollTable[index]
-}
 
 // Function that shows the pop up visual with a supplied roll's information
 function popUpCart(roll) {
@@ -118,8 +138,9 @@ function popUpCart(roll) {
     popUpList[2].textContent = `Pack of ${roll.packSize}`
     popUpList[3].textContent = `Price: \$${calculatePrice(roll)}`
 
-    popUpBox.classList.toggle('fade-in');
-    setTimeout(function() {popUpBox.classList.toggle('fade-in')}, 3000); //TO DO Check if this is allowed... also find the web resource I used
+    // Add the class the fades the box in, and then remove it after 3 seconds
+    popUpBox.classList.add('fade-in');
+    setTimeout(function() {popUpBox.classList.remove('fade-in')}, 3000); // Realised I needed to pass a function due to this post: https://stackoverflow.com/questions/20890943/why-is-javascripts-set-timeout-not-working
 }
 
 // Function that updates the price and quantity of the cart display
@@ -131,8 +152,9 @@ function updateCartDisplay() {
     for (const roll of cartList) {
         totalCost+=Number(calculatePrice(roll)); // TO DO -> Why is this a string originally?
     }
+
     // incase of floating point error
-    totalCost = totalCost.toFixed(2); // TO DO -> is this an okay method to use?
+    totalCost = totalCost.toFixed(2);
 
     // update the displayed values
     cartElements[0].textContent = `${cartList.length} item`

@@ -16,11 +16,11 @@
       <img src="../assets/logo/logo-01.svg" alt="A cinnamon bun drawing next to the text 'Bun bun bake shop'" width="400">
       <header>
         <nav>
-          <a class="bold larger-font hover-hl">PRODUCTS</a>
-<!-- TO DO - check this new area out, and make sure it's okay. Maybe add indicative class names? -->
+          <a class="bold larger-font hl">PRODUCTS</a>
+
           <div class="cart-area"> <!-- New cart area, with a hidden cart popup, and a spot to fill in with cart entries -->
             
-            <div class="cart-constant">
+            <div class="cart-constant"> <!-- Cart display area that is constantly there – is populated by javascript -->
               <a class="larger-font">CART</a>
               <ul class="cart-elements">
                 <li></li>
@@ -28,7 +28,7 @@
               </ul>
             </div>
 
-            <div class="cart-popup">
+            <div class="cart-popup"> <!-- Cart pop up box – is populated by javascript -->
               <span>Added to Cart: <br><br></span>
               <ul class="popup-list">
                 <li class="bold"></li>
@@ -47,7 +47,7 @@
     </div>
 
     
-    <main> <!-- Main section of page using 'item' divs for each item card -->
+    <main> <!-- Main section of page using 'item' divs for each item card. Have removed the contents of the select and radio --> 
 
       <div class="item" id="original">
         <img src="../assets/products/original-cinnamon-roll.jpg" width="280" alt="A frosted cinnamon roll on a plate with cinnamon sticks">
@@ -63,10 +63,6 @@
           <div class="item-row">
             <span>Pack Size:</span>
             <div class="pack-radio item-choice" id="og-pack" onchange="packSizeChange(this)">  <!-- radio container, using id so that each radio is distinct from the others -->
-              <input type="radio" id="og-pack1" name="og" value=1 checked> <label for="og-pack1">1</label>
-              <input type="radio" id="og-pack3" name="og" value=3><label for="og-pack3">3</label>
-              <input type="radio" id="og-pack6" name="og" value=6><label for="og-pack6">6</label>
-              <input type="radio" id="og-pack12" name="og" value=12><label for="og-pack12">12</label>
             </div>
           </div>
 
@@ -78,7 +74,7 @@
         </div>
       </div>
 
-      <div class="item">
+      <div class="item" id="apple">
         <img src="../assets/products/apple-cinnamon-roll.jpg" width="280" alt="A cinnamon roll on a plate next to a fork">
         <h1 class="larger-font bold">Apple cinnamon roll</h1>
 
@@ -91,23 +87,19 @@
 
           <div class="item-row">
             <span>Pack Size:</span>
-            <div class="pack-radio item-choice" id="apple-pack">
-              <input type="radio" id="apple-pack1" name="apple" value="1" checked> <label for="apple-pack1">1</label>
-              <input type="radio" id="apple-pack3" name="apple" value="3"><label for="apple-pack3">3</label>
-              <input type="radio" id="apple-pack6" name="apple" value="6"><label for="apple-pack6">6</label>
-              <input type="radio" id="apple-pack12" name="apple" value="12"><label for="apple-pack12">12</label>
+            <div class="pack-radio item-choice" id="apple-pack" onchange="packSizeChange(this)">
             </div>
           </div>
 
           <div class="item-row">
-            <span class="larger-font bold">$ 3.49</span>
-            <button class="cart bold larger-font hover-hl item-choice">Add to Cart</button>
+            <span class="larger-font bold price">$ 3.49</span>
+            <button class="cart bold larger-font hover-hl item-choice" onclick="addToCart(this)">Add to Cart</button>
           </div>
 
         </div>
       </div>
 
-      <div class="item">
+      <div class="item" id="raisin">
         <img src="../assets/products/raisin-cinnamon-roll.jpg" width="280" alt="A cinnamon roll with raisins protruding">
         <h1 class="larger-font bold">Raisin cinnamon roll</h1>
 
@@ -120,23 +112,19 @@
 
           <div class="item-row">
             <span>Pack Size:</span>
-            <div class="pack-radio item-choice" id="raisin-pack">
-              <input type="radio" id="raisin-pack1" name="raisin" value="1" checked> <label for="raisin-pack1">1</label>
-              <input type="radio" id="raisin-pack3" name="raisin" value="3"><label for="raisin-pack3">3</label>
-              <input type="radio" id="raisin-pack6" name="raisin" value="6"><label for="raisin-pack6">6</label>
-              <input type="radio" id="raisin-pack12" name="raisin" value="12"><label for="raisin-pack12">12</label>
+            <div class="pack-radio item-choice" id="raisin-pack" onchange="packSizeChange(this)">
             </div>
           </div>
 
           <div class="item-row">
-            <span class="larger-font bold">$ 2.99</span>
-            <button class="cart bold larger-font hover-hl item-choice">Add to Cart</button>
+            <span class="larger-font bold price">$ 2.99</span>
+            <button class="cart bold larger-font hover-hl item-choice" onclick="addToCart(this)">Add to Cart</button>
           </div>
 
         </div>
       </div>
 
-      <div class="item">
+      <div class="item" id="walnut">
         <img src="../assets/products/walnut-cinnamon-roll.jpg" width="280" alt="A cinnamon roll on a black plate with a 2 prong fork">
         <h1 class="larger-font bold">Walnut cinnamon roll</h1>
 
@@ -149,23 +137,19 @@
 
           <div class="item-row">
             <span>Pack Size:</span>
-            <div class="pack-radio item-choice" id="walnut-pack">
-              <input type="radio" id="walnut-pack1" name="walnut" value="1" checked> <label for="walnut-pack1">1</label>
-              <input type="radio" id="walnut-pack3" name="walnut" value="3"><label for="walnut-pack3">3</label>
-              <input type="radio" id="walnut-pack6" name="walnut" value="6"><label for="walnut-pack6">6</label>
-              <input type="radio" id="walnut-pack12" name="walnut" value="12"><label for="walnut-pack12">12</label>
+            <div class="pack-radio item-choice" id="walnut-pack" onchange="packSizeChange(this)">
             </div>
           </div>
 
           <div class="item-row">
-            <span class="larger-font bold">$ 3.49</span>
-            <button class="cart bold larger-font hover-hl item-choice">Add to Cart</button>
+            <span class="larger-font bold price">$ 3.49</span>
+            <button class="cart bold larger-font hover-hl item-choice" onclick="addToCart(this)">Add to Cart</button>
           </div>
 
         </div>
       </div>
 
-      <div class="item">
+      <div class="item" id="choc">
         <img src="../assets/products/double-chocolate-cinnamon-roll.jpg" width="280" alt="A cinnamon roll on a piece of paper with a chocolate glaze and chopped nuts on top">
         <h1 class="larger-font bold">Double-chocolate cinnamon roll</h1>
 
@@ -178,23 +162,19 @@
 
           <div class="item-row">
             <span>Pack Size:</span>
-            <div class="pack-radio item-choice" id="choc-pack">
-              <input type="radio" id="choc-pack1" name="choc" value="1" checked> <label for="choc-pack1">1</label>
-              <input type="radio" id="choc-pack3" name="choc" value="3"><label for="choc-pack3">3</label>
-              <input type="radio" id="choc-pack6" name="choc" value="6"><label for="choc-pack6">6</label>
-              <input type="radio" id="choc-pack12" name="choc" value="12"><label for="choc-pack12">12</label>
+            <div class="pack-radio item-choice" id="choc-pack" onchange="packSizeChange(this)">
             </div>
           </div>
 
           <div class="item-row">
-            <span class="larger-font bold">$ 3.99</span>
-            <button class="cart bold larger-font hover-hl item-choice">Add to Cart</button>
+            <span class="larger-font bold price">$ 3.99</span>
+            <button class="cart bold larger-font hover-hl item-choice" onclick="addToCart(this)">Add to Cart</button>
           </div>
 
         </div>
       </div>
 
-      <div class="item">
+      <div class="item" id="strawberry">
         <img src="../assets/products/strawberry-cinnamon-roll.jpg" width="280" alt="Multiple cinmamon rolls and straberries skewered by sticks">
         <h1 class="larger-font bold">Strawberry cinnamon roll</h1>
 
@@ -207,17 +187,13 @@
 
           <div class="item-row">
             <span>Pack Size:</span>
-            <div class="pack-radio item-choice" id="sb-pack">
-              <input type="radio" id="sb-pack1" name="sb" value="1" checked> <label for="sb-pack1">1</label>
-              <input type="radio" id="sb-pack3" name="sb" value="3"><label for="sb-pack3">3</label>
-              <input type="radio" id="sb-pack6" name="sb" value="6"><label for="sb-pack6">6</label>
-              <input type="radio" id="sb-pack12" name="sb" value="12"><label for="sb-pack12">12</label>
+            <div class="pack-radio item-choice" id="sb-pack" onchange="packSizeChange(this)">
             </div>
           </div>
 
           <div class="item-row">
-            <span class="larger-font bold">$ 3.99</span>
-            <button class="cart bold larger-font hover-hl item-choice">Add to Cart</button>
+            <span class="larger-font bold price">$ 3.99</span>
+            <button class="cart bold larger-font hover-hl item-choice" onclick="addToCart(this)">Add to Cart</button>
           </div>
 
         </div>

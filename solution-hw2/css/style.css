@@ -18,7 +18,7 @@
     font-weight: 600;
 }
 
-.hover-hl:hover {
+.hover-hl:hover, .hl {
     background-color: yellow;
 }
 
@@ -56,9 +56,12 @@ nav {
     gap: 100px;
 }
 
+nav a {
+    margin-bottom: auto;
+}
+
 
 /* Cart area */ 
-/* TO DO - this area is new, so check it! */
 
 .cart-area {
     display: flex;
@@ -89,13 +92,12 @@ nav {
     margin-top: 30px;
     padding: 5px;
     opacity: 0;
-    transition: opacity 0.2s linear
+    transition: opacity;
 }
 
 .fade-in {
     opacity: 1;
 }
-
 
 
 /* Main page styling*/
