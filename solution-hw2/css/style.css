@@ -18,7 +18,7 @@
     font-weight: 600;
 }
 
-.hover-hl:hover, .hl {
+.hover-hl:hover {
     background-color: yellow;
 }
 
@@ -52,7 +52,7 @@ nav {
     display: flex;
     justify-content: right;
     margin-top: 60px;
-    margin-right: 100px;
+    margin-right: 40px;
     gap: 100px;
 }
 
@@ -61,12 +61,11 @@ nav a {
 }
 
 
-/* Cart area */ 
+/* The cart area and its children */ 
 
 .cart-area {
     display: flex;
     justify-content: center;
-    align-items: top;
     width: 200px;
     height: 80px; 
 }

@@ -4,25 +4,26 @@ function Adaption(name, value) {
     this.value = value;
 }
 
-// Make the list of adaption objects, as it says in the instructions
-const glazeAdaption = [new Adaption ("Keep original", 0), 
-                        new Adaption ("Sugar milk", 0), 
-                        new Adaption ("Vanila milk", 0.5), 
-                        new Adaption ("Double chocolate", 1.5) ];
+// Make the lists of adaption objects
+const glazeAdaption = [new Adaption ('Keep original', 0), 
+                        new Adaption ('Sugar milk', 0), 
+                        new Adaption ('Vanila milk', 0.5), 
+                        new Adaption ('Double chocolate', 1.5),
+];
 
-const sizeAdaption = [new Adaption ("1", 1), 
-                        new Adaption ("3", 3), 
-                        new Adaption ("6", 5), 
-                        new Adaption ("12", 10) ];
+const sizeAdaption = [new Adaption ('1', 1), 
+                        new Adaption ('3', 3), 
+                        new Adaption ('6', 5), 
+                        new Adaption ('12', 10),
+];
 
-// Get the elements for the menus we need to populate
+// Get the roll elements for the menus we need to populate
 let rollWebElement = document.querySelectorAll('.item');
 
 // Iterate over each roll item, and populate the menus with the information from the adaptions
-for (i=0; i<rollWebElement.length; i++){
+for (let rollElement of rollWebElement){
 
-    // Get the elements
-    let rollElement = rollWebElement[i];
+    // Get the child elements that need to be edited
     let glazeElement = rollElement.querySelector('select');
     let packElement = rollElement.querySelector('.pack-radio');
     let rollName = rollElement.id;
@@ -41,37 +42,37 @@ for (i=0; i<rollWebElement.length; i++){
 // Add the adaption into a select element with the correct formatting
 function addAdaptionToSelect(selectElement, adaption){
     // Create the option
-    let glazeOption = document.createElement("option");
+    let glazeOption = document.createElement('option');
 
     // Configure the option and the text to be added
     glazeOption.setAttribute('value', adaption.value);
     let glazeText = document.createTextNode(adaption.name);
 
-    // Append each child
+    // Append the created elemented to the select element
     glazeOption.appendChild(glazeText);
     selectElement.appendChild(glazeOption);
 }
 
 // Add the adaption into a radio element with the correct formatting
 function addAdaptionToRadio(radioElement, adaption, rollName) {
-    // Create the input
-    let packRadio = document.createElement("input");
+    // Create the input element
+    let packRadio = document.createElement('input');
 
     // Configure the input
     packRadio.id = `${rollName}-pack${adaption.name}`;
-    packRadio.setAttribute('type', "radio");
+    packRadio.setAttribute('type', 'radio');
     packRadio.setAttribute('name', rollName); 
     packRadio.setAttribute('value', adaption.value);
 
     // Default check the first box
-    if (adaption.name == "1") packRadio.checked=true;
+    if (adaption.name == '1') packRadio.checked=true;
 
     // Configure the label
-    let label = document.createElement("label");
+    let label = document.createElement('label');
     label.setAttribute('for', packRadio.id);
     let labelText =  document.createTextNode(adaption.name);
 
-    // Append each child 
+    // Append the created elements to the radio element
     label.appendChild(labelText);
     radioElement.appendChild(packRadio);
     radioElement.appendChild(label);
