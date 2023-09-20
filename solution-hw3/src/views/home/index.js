@@ -5,7 +5,7 @@ const homepage = () => {
     return (
       <div>
           <div className="header-group">
-            <img src="/assets/logo/logo-01.svg" alt="A cinnamon bun drawing next to the text 'Bun bun bake shop'" width="400"/>
+            <img src="assets/logo/logo-01.svg" alt="A cinnamon bun drawing next to the text 'Bun bun bake shop'" width="400"/>
             <header>
               <nav>
                 <a className="bold larger-font hover-hl">PRODUCTS</a>
