@@ -1,14 +1,10 @@
 import './App.css';
+import Homepage from './views/home/index.js';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>
-          Solution to HW1
-        </h1>
-      </header>
-    </div>
+    <Homepage />
   );
 }
 
