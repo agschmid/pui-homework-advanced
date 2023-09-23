@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-//import './roll.css' -> TO DO separate out the CSS where possible
+import './roll.css';
 
+//Roll component for each roll
 class RollCard extends Component {
     render() {
         return (
