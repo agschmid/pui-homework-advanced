@@ -7,23 +7,23 @@
 }
   
 hr {
-width: 100%;
-border: none;
-border-top: 5px solid black;
+    width: 100%;
+    border: none;
+    border-top: 5px solid black;
 }
 
 header {
-display: flex;
-flex-direction: column;
-width: 100%;
-justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-between;
 }
 
 nav {
-display: flex;
-justify-content: right;
-align-items: center;
-margin-top: 20px;
-margin-right: 100px;
-gap: 100px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin-top: 20px;
+    margin-right: 100px;
+    gap: 100px;
 }

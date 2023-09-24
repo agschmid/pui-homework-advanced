@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './navbar.css';
 
-//Navbar component for the top of the page
+//Navbar component for the whole top of page
 class NavBar extends Component {
     render() {
         return (

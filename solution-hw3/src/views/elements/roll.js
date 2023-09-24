@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './roll.css';
 
-//Roll component for each roll
+//Component for a roll, its price, and options, as would be shown on the products page
 class RollCard extends Component {
     render() {
         return (

@@ -4,6 +4,8 @@ import './index.css';
 import RollCard from '../elements/roll';
 import NavBar from '../elements/navbar';
 
+// Homepage class is the whole homepage
+// NOTE: I'm holding the variable roll data in state, but am not updating the state in this assignment
 class Homepage extends Component {
   constructor(props) {
     super(props);
@@ -37,6 +39,8 @@ class Homepage extends Component {
     };
   }
 
+  // Render the Homepage here, using the imported Navbar and Roll elements
+  // Each roll element is built using the props defined here
   render() {
     return (
       <div>
