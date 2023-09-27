@@ -10,29 +10,36 @@ class RollCard extends Component {
     super(props);
     this.state = {
       displayPrice: this.props.basePrice,
+      selectedGlazing: this.props.selectedGlazing,
+      selectedPack: this.props.selectedPack,
       glazingPrice: 0,
       packPrice: 1
     };    
   }
 
-  calculatePrice(e){
+  // Method to calculate and update the price
+  updatePrice(e){
     this.setState(prevState => ({
       ...prevState,
       displayPrice: ((this.props.basePrice + this.state.glazingPrice) * this.state.packPrice).toFixed(2)
     }))
   }
 
+  // Method to update the current pack and it's price
   // Was having problems with setting state being async – used this resource for solve
   // https://techgleanings.com/decoding-the-delays-understanding-setstate-and-how-to-ensure-immediate-updates
   updatePack(e){
-    this.setState({packPrice: Number(e.target.value)}, () => {
-      this.calculatePrice()
+    let selectedPackValue = e.target.parentNode.querySelector('input:checked + label').textContent
+    this.setState({packPrice: Number(e.target.value), selectedPack: selectedPackValue}, () => {
+      this.updatePrice()
     });
   }
 
+  // Method to update the current glazing and it's price
   updateGlazing(e){
-    this.setState({glazingPrice: Number(e.target.value)}, () => {
-      this.calculatePrice()
+    let selectedGlazingValue = e.target.options[e.target.selectedIndex].text
+    this.setState({glazingPrice: Number(e.target.value), selectedGlazing: selectedGlazingValue}, () => {
+      this.updatePrice()
     });
   }
 
@@ -66,7 +73,13 @@ class RollCard extends Component {
 
             <div className="item-row">
               <span className="larger-font bold">$ {this.state.displayPrice}</span>
-              <button className="cart bold larger-font hover-hl item-choice">Add to Cart</button>
+              <button className="cart bold larger-font hover-hl item-choice" 
+                onClick={() => this.props.clickBuy({roll: this.props.rollName, 
+                  glazing: this.state.selectedGlazing, 
+                  pack: this.state.selectedPack, 
+                  price: this.state.displayPrice})}>
+                Add to Cart
+              </button>
             </div>
 
           </div>

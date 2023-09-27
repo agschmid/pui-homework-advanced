@@ -42,9 +42,6 @@ function calculatePrice(basePrice, glazingPrice, packPrice){
     return ((basePrice + glazingPrice) * packPrice);
 }
 
-
-// TODO -> TRANSFER THIS OVER
-
 // Update page and roll value when glaze is changed.
 function glazingChange(element) {
     // Get elements from the html
@@ -72,8 +69,6 @@ function glazingChange(element) {
     let priceElement = rollElement.querySelector('.price');
     priceElement.innerText = '$ ' + roll.price.toFixed(2);
 }
-
-// TODO -> TRANSFER THIS OVER
 
 // Update page and roll value when pack size is changed. 
 // NOTE: I would combine this with glazingChange(), but the instructions suggest they should be separate

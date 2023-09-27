@@ -64,12 +64,20 @@ class Homepage extends Component {
           basePrice:3.99,
           displayPrice: 3.99
         }
-      ]
+      ],
+      rollList : []
     };
   }
 
+  // Method to add the roll associated with a buy button
+  // This method is passed across components – it's triggered by RollCard
+  addToCart = (rollDetails) => {
+    this.setState({rollList: [...this.state.rollList, rollDetails]}, () => {
+      console.log(this.state.rollList)
+    });
+  };
+
   // Render the Homepage here, using the imported Navbar and Roll elements
-  // Each roll element is built using the props defined here
   render() {
     return (
       <div>
@@ -87,6 +95,7 @@ class Homepage extends Component {
               displayPrice={roll.displayPrice}
               selectedGlazing={roll.selectedGlazing}
               selectedPack={roll.selectedPack}
+              clickBuy={this.addToCart}
               />;
           })}
         </main>

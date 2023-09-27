@@ -3,6 +3,7 @@ import './navbar.css';
 
 //Navbar component for the whole top of page
 class NavBar extends Component {
+  
     render() {
         return (
               <div className="header-group"> 
