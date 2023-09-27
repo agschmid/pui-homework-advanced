@@ -42,6 +42,9 @@ function calculatePrice(basePrice, glazingPrice, packPrice){
     return ((basePrice + glazingPrice) * packPrice);
 }
 
+
+// TODO -> TRANSFER THIS OVER
+
 // Update page and roll value when glaze is changed.
 function glazingChange(element) {
     // Get elements from the html
@@ -69,6 +72,8 @@ function glazingChange(element) {
     let priceElement = rollElement.querySelector('.price');
     priceElement.innerText = '$ ' + roll.price.toFixed(2);
 }
+
+// TODO -> TRANSFER THIS OVER
 
 // Update page and roll value when pack size is changed. 
 // NOTE: I would combine this with glazingChange(), but the instructions suggest they should be separate
@@ -99,6 +104,7 @@ function packSizeChange(element) {
     priceElement.innerText = '$ ' + roll.price.toFixed(2);
 }
 
+// TODO -> TRANSFER THIS
 // Make a deep clone of the roll, and add to the list 'cartList'
 // NOTE: Doing this as otherwise it makes a soft copy and menu changes affect the rolls in the cart
 function addToCart(element) {
@@ -109,6 +115,7 @@ function addToCart(element) {
     updateCartDisplay();
 }
 
+// TODO -> TRANSFER THIS
 // Shows the pop up cart visual with a supplied roll's information
 function popUpCart(roll) {
     // Get pop-up elements from the html
@@ -130,6 +137,7 @@ function popUpCart(roll) {
     }, 3000); 
 }
 
+// TODO -> TRANSFER THIS
 // Update the price and quantity of the cart display
 function updateCartDisplay() {
     const cartElements = document.querySelectorAll('.cart-elements li');
