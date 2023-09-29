@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import './roll.css';
 
-
-
-
 //Component for a roll, its price, and options, as would be shown on the products page
 class RollCard extends Component {
   constructor(props) {
@@ -21,7 +18,7 @@ class RollCard extends Component {
   updatePrice(e){
     this.setState(prevState => ({
       ...prevState,
-      displayPrice: ((this.props.basePrice + this.state.glazingPrice) * this.state.packPrice).toFixed(2)
+      displayPrice: ((this.props.basePrice + this.state.glazingPrice) * this.state.packPrice)
     }))
   }
 
@@ -72,7 +69,7 @@ class RollCard extends Component {
             </div>
 
             <div className="item-row">
-              <span className="larger-font bold">$ {this.state.displayPrice}</span>
+              <span className="larger-font bold">$ {this.state.displayPrice.toFixed(2)}</span>
               <button className="cart bold larger-font hover-hl item-choice" 
                 onClick={() => this.props.clickBuy({roll: this.props.rollName, 
                   glazing: this.state.selectedGlazing, 

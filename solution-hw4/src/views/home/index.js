@@ -65,15 +65,43 @@ class Homepage extends Component {
           displayPrice: 3.99
         }
       ],
-      rollList : []
+      rollList : [],
+      itemCount: 0, 
+      itemTotal: 0,
+      showCartPopUp: false
     };
   }
 
+
+  // TODO Descibe this function
+  updateCart = () => {
+
+    // Loop over each roll and add the price to the total
+    let totalCost = 0
+    for (const roll of this.state.rollList){
+      totalCost += roll.price
+    }
+    // Update the cart displayed on the webpage, and show the popup
+    this.setState(prevState => ({
+      ...prevState,
+      itemCount: this.state.rollList.length, 
+      itemTotal: totalCost,
+      showCartPopUp: true}))
+    
+    // Hide the popup after 3 seconds
+    setTimeout( () => {
+      this.setState(prevState => ({
+        ...prevState,
+        showCartPopUp: false
+      }));
+    }, 3000);
+  }
+  
   // Method to add the roll associated with a buy button
   // This method is passed across components – it's triggered by RollCard
   addToCart = (rollDetails) => {
     this.setState({rollList: [...this.state.rollList, rollDetails]}, () => {
-      console.log(this.state.rollList)
+      this.updateCart()
     });
   };
 
@@ -81,7 +109,13 @@ class Homepage extends Component {
   render() {
     return (
       <div>
-        <NavBar />
+        <NavBar 
+          itemCount = {this.state.itemCount}
+          itemTotal = {this.state.itemTotal}
+          updateCart = {this.updateCart}
+          cartUpdated = {this.state.showCartPopUp}
+          recentRoll = {this.state.rollList[this.state.rollList.length-1]}
+        />
         <main>
         {this.state.rollData.map((roll, idx) => {
             return <RollCard
