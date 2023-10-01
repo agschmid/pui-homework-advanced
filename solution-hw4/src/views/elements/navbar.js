@@ -5,6 +5,7 @@ import './navbar.css';
 class NavBar extends Component {
 
   render() {
+    // Defining the popup cart and displaying it conditionally using the cartUpdated prop from Homepage
     let popUpCart
     if (this.props.cartUpdated){
       popUpCart = <div className="cart-popup">

@@ -6,6 +6,8 @@ import NavBar from '../elements/navbar';
 
 // Homepage class is the whole homepage
 class Homepage extends Component {
+  // Using state for roll information so I can use map to populate with components
+  // Holding the cart information in state so I can update the cart component
   constructor(props) {
     super(props);
     this.state = {
@@ -73,7 +75,7 @@ class Homepage extends Component {
   }
 
 
-  // TODO Descibe this function
+  // Method to update the cart values and show the popup for 3 secs
   updateCart = () => {
 
     // Loop over each roll and add the price to the total
@@ -97,7 +99,7 @@ class Homepage extends Component {
     }, 3000);
   }
   
-  // Method to add the roll associated with a buy button
+  // Add roll associated with a buy button to rollList, and update cart when done
   // This method is passed across components – it's triggered by RollCard
   addToCart = (rollDetails) => {
     this.setState({rollList: [...this.state.rollList, rollDetails]}, () => {
@@ -112,7 +114,6 @@ class Homepage extends Component {
         <NavBar 
           itemCount = {this.state.itemCount}
           itemTotal = {this.state.itemTotal}
-          updateCart = {this.updateCart}
           cartUpdated = {this.state.showCartPopUp}
           recentRoll = {this.state.rollList[this.state.rollList.length-1]}
         />
