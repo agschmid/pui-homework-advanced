@@ -1,0 +1,10 @@
+.miniRollParent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 180px;
+}
+
+.miniRollParent img{
+    border: 3px solid black;
+}

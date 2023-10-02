@@ -27,10 +27,12 @@ nav {
     gap: 100px;
 }
 
-nav a {
+button {
+    background: none;
+    border: none;
+    padding: none;
     margin-bottom: auto;
 }
-
 
 /* Cart area */
 
@@ -62,3 +64,4 @@ nav a {
     margin-top: 30px;
     padding: 5px;
 }
+

@@ -3,6 +3,8 @@ import './index.css';
 
 import RollCard from '../elements/roll';
 import NavBar from '../elements/navbar';
+import Cart from '../elements/cart';
+
 
 // Homepage class is the whole homepage
 class Homepage extends Component {
@@ -70,7 +72,8 @@ class Homepage extends Component {
       rollList : [],
       itemCount: 0, 
       itemTotal: 0,
-      showCartPopUp: false
+      showCartPopUp: false,
+      showCartArea: false
     };
   }
 
@@ -107,6 +110,13 @@ class Homepage extends Component {
     });
   };
 
+  toggleCart = () => {
+    this.setState(prevState => ({
+      ...prevState,
+      showCartArea: !prevState.showCartArea
+    }));  
+  }
+
   // Render the Homepage here, using the imported Navbar and Roll elements
   render() {
     return (
@@ -116,7 +126,14 @@ class Homepage extends Component {
           itemTotal = {this.state.itemTotal}
           cartUpdated = {this.state.showCartPopUp}
           recentRoll = {this.state.rollList[this.state.rollList.length-1]}
+          toggleCart={this.toggleCart}
         />
+        {this.state.showCartArea && 
+          <Cart 
+            rollList ={this.state.rollList}
+            itemTotal = {this.state.itemTotal}
+          />
+        }
         <main>
         {this.state.rollData.map((roll, idx) => {
             return <RollCard

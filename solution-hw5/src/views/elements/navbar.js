@@ -23,12 +23,12 @@ class NavBar extends Component {
             <img src="./assets/logo/logo-01.svg" alt="A cinnamon bun drawing next to the text 'Bun bun bake shop'" width="400"/>
             <header>
               <nav>
-                <a className="bold larger-font hover-hl">PRODUCTS</a>
+                <button className="bold larger-font hover-hl">PRODUCTS</button>
       
                 <div className="cart-area">
 
                   <div className="cart-constant">
-                    <a className="larger-font">CART</a>
+                    <button className="bold larger-font hover-hl" onClick={() => this.props.toggleCart()}>CART</button>
                     <ul className="cart-elements">
                       <li>{this.props.itemCount} items</li>
                       <li>Total: ${this.props.itemTotal.toFixed(2)}</li>

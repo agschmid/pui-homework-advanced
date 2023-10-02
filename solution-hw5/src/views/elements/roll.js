@@ -97,7 +97,9 @@ class RollCard extends Component {
               onClick={() => this.props.clickBuy({roll: this.props.rollName, 
                 glazing: this.state.selectedGlazing, 
                 pack: this.state.selectedPack, 
-                price: this.state.displayPrice})}>
+                price: this.state.displayPrice,
+                imageURL: this.props.imageURL,
+                imageAlt: this.props.imageAlt})}>
               Add to Cart
             </button>
           </div>
