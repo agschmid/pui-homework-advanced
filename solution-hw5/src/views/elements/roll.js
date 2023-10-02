@@ -41,47 +41,70 @@ class RollCard extends Component {
   }
 
   render() {
-      return (
-          <div className="item">
-          <img src={this.props.imageURL} width="280" alt={this.props.imageAlt}/>
-          <h1 className="larger-font bold">{this.props.rollName}</h1>
+    //TODO Check this
+    const packStyle = {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      border: "2px solid black",
+      width: "35px",
+      height: "35px",
+      cursor: "pointer",
+    }
 
-          <div className="item-info">
+    const selectedPackStyle = {
+      ...packStyle,
+      backgroundColor: "lightgray",
+    }
 
-            <div className="item-row">
-              <label htmlFor={this.props.rollId+'-glazing'}>Glazing:</label>
-              <select name={this.props.rollId+'-glazing'} id={this.props.rollId+'-glazing'} className="item-choice" onChange={(e) => this.updateGlazing(e)}>
-                <option value="0">Keep original</option>
-                <option value="0">Sugar milk</option>
-                <option value="0.5">Vanilla milk</option>
-                <option value="1.5">Double chocolate</option>
-              </select>
-            </div>
+    return (
+        <div className="item">
+        <img src={this.props.imageURL} width="280" alt={this.props.imageAlt}/>
+        <h1 className="larger-font bold">{this.props.rollName}</h1>
 
-            <div className="item-row">
-              <span>Pack Size:</span>
-              <div className="pack-radio item-choice" id={this.props.rollId+'-pack'} onChange={(e) => this.updatePack(e)}>
-                <input type="radio" id={this.props.rollId+'-pack1'} name={this.props.rollId} value="1" defaultChecked/> <label htmlFor={this.props.rollId+'-pack1'}>1</label>
-                <input type="radio" id={this.props.rollId+'-pack3'} name={this.props.rollId} value="3"/><label htmlFor={this.props.rollId+'-pack3'}>3</label>
-                <input type="radio" id={this.props.rollId+'-pack6'} name={this.props.rollId} value="5"/><label htmlFor={this.props.rollId+'-pack6'}>6</label>
-                <input type="radio" id={this.props.rollId+'-pack12'} name={this.props.rollId} value="10"/><label htmlFor={this.props.rollId+'-pack12'}>12</label>
-              </div>
-            </div>
+        <div className="item-info">
 
-            <div className="item-row">
-              <span className="larger-font bold">$ {this.state.displayPrice.toFixed(2)}</span>
-              <button className="cart bold larger-font hover-hl item-choice" 
-                onClick={() => this.props.clickBuy({roll: this.props.rollName, 
-                  glazing: this.state.selectedGlazing, 
-                  pack: this.state.selectedPack, 
-                  price: this.state.displayPrice})}>
-                Add to Cart
-              </button>
-            </div>
-
+          <div className="item-row">
+            <label htmlFor={this.props.rollId+'-glazing'}>Glazing:</label>
+            <select name={this.props.rollId+'-glazing'} id={this.props.rollId+'-glazing'} className="item-choice" onChange={(e) => this.updateGlazing(e)}>
+              <option value="0">Keep original</option>
+              <option value="0">Sugar milk</option>
+              <option value="0.5">Vanilla milk</option>
+              <option value="1.5">Double chocolate</option>
+            </select>
           </div>
+
+          <div className="item-row">
+            <span>Pack Size:</span>
+            <div className="pack-radio item-choice" id={this.props.rollId+'-pack'} onChange={(e) => this.updatePack(e)}>
+              <input type="radio" id={this.props.rollId+'-pack1'} name={this.props.rollId} value="1" defaultChecked/>
+              <label htmlFor={this.props.rollId+'-pack1'} style={this.state.selectedPack === "1" ? selectedPackStyle : packStyle}>1</label>
+
+              <input type="radio" id={this.props.rollId+'-pack3'} name={this.props.rollId} value="3"/>
+              <label htmlFor={this.props.rollId+'-pack3'} style={this.state.selectedPack === "3" ? selectedPackStyle : packStyle}>3</label>
+              
+              <input type="radio" id={this.props.rollId+'-pack6'} name={this.props.rollId} value="5"/>
+              <label htmlFor={this.props.rollId+'-pack6'} style={this.state.selectedPack === "6" ? selectedPackStyle : packStyle}>6</label>
+              
+              <input type="radio" id={this.props.rollId+'-pack12'} name={this.props.rollId} value="10"/>
+              <label htmlFor={this.props.rollId+'-pack12'} style={this.state.selectedPack === "12" ? selectedPackStyle : packStyle}>12</label>
+            </div>
+          </div>
+
+          <div className="item-row">
+            <span className="larger-font bold">$ {this.state.displayPrice.toFixed(2)}</span>
+            <button className="cart bold larger-font hover-hl item-choice" 
+              onClick={() => this.props.clickBuy({roll: this.props.rollName, 
+                glazing: this.state.selectedGlazing, 
+                pack: this.state.selectedPack, 
+                price: this.state.displayPrice})}>
+              Add to Cart
+            </button>
+          </div>
+
         </div>
-      ) 
+      </div>
+    ) 
   }
 }
 

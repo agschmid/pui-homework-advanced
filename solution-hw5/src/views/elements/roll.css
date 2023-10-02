@@ -69,19 +69,3 @@ select {
 input[type="radio"] {
   display:none;
 }
-
-/* Selects the label immediately after each radio input*/
-input[type="radio"] + label {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid black;
-  width: 35px;
-  height: 35px;
-  cursor: pointer;
-}
-
-/* Makes the label after the checked radio gray*/
-input[type="radio"]:checked + label {
-  background-color: lightgray;
-}
