@@ -1,0 +1,64 @@
+/* Navbar section and contents*/
+
+.header-group {
+    display: flex;
+    gap: 20px;
+    margin: 30px 0px 0px 20px;
+}
+
+hr {
+    width: 100%;
+    border: none;
+    border-top: 5px solid black;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-between;
+}
+
+nav {
+    display: flex;
+    justify-content: right;
+    margin-top: 60px;
+    margin-right: 40px;
+    gap: 100px;
+}
+
+nav a {
+    margin-bottom: auto;
+}
+
+
+/* Cart area */
+
+.cart-area {
+    display: flex;
+    justify-content: center;
+    width: 200px;
+    height: 80px; 
+}
+
+.cart-constant {
+    text-align: right;
+    min-width: 100px;
+    margin-right: 50px;
+}
+
+.cart-area ul {
+    padding-top: 10px;
+    list-style-type: none;
+    padding: 0;
+}
+
+.cart-popup {
+    position: absolute;
+    background-color: white;
+    border: 2px solid black;
+    width: 200px;
+    min-height: 150px;
+    margin-top: 30px;
+    padding: 5px;
+}
