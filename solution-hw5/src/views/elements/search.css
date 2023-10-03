@@ -1,0 +1,27 @@
+.searchParent {
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    width: 100%;
+    margin: 30px 0px;
+}
+
+.searchForm {
+    width: 95%;
+}
+
+.searchForm button{
+    border: 1px solid gray; 
+    border-left: none;
+    background-color: rgb(240, 240, 240);
+}  
+
+.searchForm input{
+    border: 1px solid gray; 
+    width: 200px;
+}
+
+.searchParent select{
+    width: 180px;
+    margin-left: 50px;
+}

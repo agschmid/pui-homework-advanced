@@ -4,6 +4,7 @@ import './index.css';
 import RollCard from '../elements/roll';
 import NavBar from '../elements/navbar';
 import Cart from '../elements/cart';
+import Search from '../elements/search';
 
 
 // Homepage class is the whole homepage
@@ -21,7 +22,8 @@ class Homepage extends Component {
           rollName: "Original cinnamon roll",
           rollId: "og",
           basePrice: 2.49,
-          displayPrice: 2.49
+          displayPrice: 2.49,
+          rollShowing: true,
           },
           {selectedGlazing: "Keep original",
           selectedPack: "1",
@@ -30,7 +32,8 @@ class Homepage extends Component {
           rollName:"Apple cinnamon roll",
           rollId:"apple",
           basePrice: 3.49,
-          displayPrice: 3.49
+          displayPrice: 3.49,
+          rollShowing: true,
           },
           {selectedGlazing: "Keep original",
           selectedPack: "1",
@@ -39,7 +42,8 @@ class Homepage extends Component {
           rollName:"Raisin cinnamon roll",
           rollId:"raisin",
           basePrice:2.99,
-          displayPrice: 2.99
+          displayPrice: 2.99,
+          rollShowing: true,
           },
           {selectedGlazing: "Keep original",
           selectedPack: "1",
@@ -48,7 +52,8 @@ class Homepage extends Component {
           rollName:"Walnut cinnamon roll",
           rollId:"walnut",
           basePrice:3.49,
-          displayPrice: 3.49
+          displayPrice: 3.49,
+          rollShowing: true,
           },
           {selectedGlazing: "Keep original",
           selectedPack: "1",
@@ -57,7 +62,8 @@ class Homepage extends Component {
           rollName:"Double-chocolate cinnamon roll",
           rollId:"choc",
           basePrice:3.99,
-          displayPrice: 3.99
+          displayPrice: 3.99,
+          rollShowing: true,
           },
           {selectedGlazing: "Keep original",
           selectedPack: "1",
@@ -66,7 +72,8 @@ class Homepage extends Component {
           rollName:"Strawberry cinnamon roll",
           rollId:"strawberry",
           basePrice:3.99,
-          displayPrice: 3.99
+          displayPrice: 3.99,
+          rollShowing: true,
         }
       ],
       rollList : [],
@@ -76,6 +83,7 @@ class Homepage extends Component {
       showCartArea: false
     };
   }
+
 
 
   // Method to update the cart values and show the popup for 3 secs
@@ -90,23 +98,32 @@ class Homepage extends Component {
     this.setState(prevState => ({
       ...prevState,
       itemCount: this.state.rollList.length, 
-      itemTotal: totalCost,
-      showCartPopUp: true}))
-    
-    // Hide the popup after 3 seconds
-    setTimeout( () => {
+      itemTotal: totalCost
+    }))
+
+  }
+
+   // Show the cart popup
+  cartPopUp = () => { 
       this.setState(prevState => ({
         ...prevState,
-        showCartPopUp: false
-      }));
-    }, 3000);
-  }
+        showCartPopUp: true}))
+      
+      // Hide the popup after 3 seconds
+      setTimeout( () => {
+        this.setState(prevState => ({
+          ...prevState,
+          showCartPopUp: false
+        }));
+      }, 3000);
+    }
   
   // Add roll associated with a buy button to rollList, and update cart when done
   // This method is passed across components – it's triggered by RollCard
   addToCart = (rollDetails) => {
     this.setState({rollList: [...this.state.rollList, rollDetails]}, () => {
-      this.updateCart()
+      this.updateCart();
+      this.cartPopUp();
     });
   };
 
@@ -116,6 +133,46 @@ class Homepage extends Component {
       showCartArea: !prevState.showCartArea
     }));  
   }
+
+  updateRollData = (rollIndex, rollInfo) => {
+    let rollData = [...this.state.rollData];
+    rollData[rollIndex].selectedPack = rollInfo.selectedPack;
+    rollData[rollIndex].selectedGlazing = rollInfo.selectedGlazing;
+    rollData[rollIndex].displayPrice = (rollData[rollIndex].basePrice + rollInfo.glazingPrice) * rollInfo.packPrice;
+
+    this.setState(prevState => ({
+      ...prevState,
+      rollData: rollData
+    }));    
+  }
+
+  deleteRoll = (rollIndex) => {
+    let rollList = [...this.state.rollList]
+    rollList.splice(rollIndex, 1);
+    this.setState({rollList: rollList}, () => {
+      this.updateCart();
+    });
+  }
+
+  // TODO: Fix this and be consistent between e and event
+  sortRolls = (sortBy) => {
+    let rollData = [...this.state.rollData]
+    switch(sortBy) {
+      case "name":
+        rollData.sort((roll1, roll2) => (roll1.rollName > roll2.rollName) ? 1 : (roll1.rollName < roll2.rollName) ? -1 : 0)
+        break;
+      case "base":
+        rollData.sort((roll1, roll2) => (roll1.basePrice > roll2.basePrice) ? 1 : (roll1.basePrice < roll2.basePrice) ? -1 : 0)
+        break;
+      default:
+        //Should leave as is if default. TODO: Check if I should adjust this.
+    }
+    this.setState(prevState => ({
+      ...prevState,
+      rollData: rollData
+    }));  
+  }
+
 
   // Render the Homepage here, using the imported Navbar and Roll elements
   render() {
@@ -128,17 +185,19 @@ class Homepage extends Component {
           recentRoll = {this.state.rollList[this.state.rollList.length-1]}
           toggleCart={this.toggleCart}
         />
+        <Search sortRolls={this.sortRolls}/>
         {this.state.showCartArea && 
           <Cart 
             rollList ={this.state.rollList}
             itemTotal = {this.state.itemTotal}
+            deleteRoll = {this.deleteRoll}
           />
         }
         <main>
         {this.state.rollData.map((roll, idx) => {
             return <RollCard
               key={idx}
-              noteIndex={idx}
+              rollIndex={idx}
               imageURL={roll.imageURL}
               imageAlt={roll.imageAlt}
               rollName={roll.rollName}
@@ -148,6 +207,7 @@ class Homepage extends Component {
               selectedGlazing={roll.selectedGlazing}
               selectedPack={roll.selectedPack}
               clickBuy={this.addToCart}
+              updateRollData={this.updateRollData}
               />;
           })}
         </main>

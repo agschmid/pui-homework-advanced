@@ -6,7 +6,6 @@ class RollCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayPrice: this.props.basePrice,
       selectedGlazing: this.props.selectedGlazing,
       selectedPack: this.props.selectedPack,
       glazingPrice: 0,
@@ -14,13 +13,8 @@ class RollCard extends Component {
     };    
   }
 
-  // Method to calculate and update the price
-  updatePrice(e){
-    this.setState(prevState => ({
-      ...prevState,
-      displayPrice: ((this.props.basePrice + this.state.glazingPrice) * this.state.packPrice)
-    }))
-  }
+
+  // TODO Function that updates price vals in the parent index
 
   // Method to update the current pack and it's price
   // Was having problems with setting state being async – used this resource for solve
@@ -28,7 +22,7 @@ class RollCard extends Component {
   updatePack(e){
     let selectedPackValue = e.target.parentNode.querySelector('input:checked + label').textContent
     this.setState({packPrice: Number(e.target.value), selectedPack: selectedPackValue}, () => {
-      this.updatePrice()
+      this.props.updateRollData(this.props.rollIndex, this.state)
     });
   }
 
@@ -36,7 +30,7 @@ class RollCard extends Component {
   updateGlazing(e){
     let selectedGlazingValue = e.target.options[e.target.selectedIndex].text
     this.setState({glazingPrice: Number(e.target.value), selectedGlazing: selectedGlazingValue}, () => {
-      this.updatePrice()
+      this.props.updateRollData(this.props.rollIndex, this.state)
     });
   }
 
@@ -92,12 +86,12 @@ class RollCard extends Component {
           </div>
 
           <div className="item-row">
-            <span className="larger-font bold">$ {this.state.displayPrice.toFixed(2)}</span>
+            <span className="larger-font bold">$ {this.props.displayPrice.toFixed(2)}</span>
             <button className="cart bold larger-font hover-hl item-choice" 
               onClick={() => this.props.clickBuy({roll: this.props.rollName, 
                 glazing: this.state.selectedGlazing, 
                 pack: this.state.selectedPack, 
-                price: this.state.displayPrice,
+                price: this.props.displayPrice,
                 imageURL: this.props.imageURL,
                 imageAlt: this.props.imageAlt})}>
               Add to Cart

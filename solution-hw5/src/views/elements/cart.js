@@ -22,7 +22,9 @@ class Cart extends Component {
                           {this.props.rollList.map((roll, idx) => {
                             return <RollInCart
                               key={idx}
+                              index = {idx}
                               roll={roll}
+                              deleteRoll = {this.props.deleteRoll}
                               />;
                           })}
                         </div>

@@ -2,9 +2,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 180px;
+    width: 200px;
 }
 
 .miniRollParent img{
     border: 3px solid black;
+}
+
+.delete {
+    text-decoration: underline;
+    margin-top: 15px;
 }
