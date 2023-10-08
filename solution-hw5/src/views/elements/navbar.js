@@ -6,7 +6,7 @@ class NavBar extends Component {
   render() {
     // Defining the popup cart and displaying it conditionally using the cartUpdated prop from Homepage
     let popUpCart
-    if (this.props.cartUpdated){
+    if (this.props.cartUpdated && this.props.recentRoll){
       popUpCart = <div className="cart-popup">
                     <span>Added to Cart: <br/><br/></span>
                     <ul className="popup-list">
