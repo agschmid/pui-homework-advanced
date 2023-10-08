@@ -3,7 +3,6 @@ import './navbar.css';
 
 //Navbar component for the whole top of page
 class NavBar extends Component {
-
   render() {
     // Defining the popup cart and displaying it conditionally using the cartUpdated prop from Homepage
     let popUpCart
@@ -18,21 +17,18 @@ class NavBar extends Component {
                     </ul>
                   </div>
     }
+    
     return (
           <div className="header-group"> 
             <img src="./assets/logo/logo-01.svg" alt="A cinnamon bun drawing next to the text 'Bun bun bake shop'" width="400"/>
             <header>
               <nav>
-                <button className="bold larger-font hover-hl">PRODUCTS</button>
+                <button className="bold larger-font hl">PRODUCTS</button>
       
-                <div className="cart-area">
+                <div className="cart-pop-up-area">
 
                   <div className="cart-constant">
                     <button className="bold larger-font hover-hl" onClick={() => this.props.toggleCart()}>CART</button>
-                    <ul className="cart-elements">
-                      <li>{this.props.itemCount} items</li>
-                      <li>Total: ${this.props.itemTotal.toFixed(2)}</li>
-                    </ul>
                   </div>
                   {popUpCart}
                 </div>

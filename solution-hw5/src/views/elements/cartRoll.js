@@ -2,14 +2,8 @@ import React, { Component } from 'react';
 import './cartRoll.css';
 
 
-//Component for a roll, its price, and options, as would be shown on the products page
+//Component for the roll displayed in the cart
 class RollInCart extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };    //TODO Delete this
-  }
-
   render() {
     return (
         <div className='miniRollParent'>

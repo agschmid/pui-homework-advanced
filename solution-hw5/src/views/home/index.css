@@ -18,7 +18,7 @@
   font-weight: 600;
 }
 
-.hover-hl:hover {
+.hover-hl:hover, .hl {
   background-color: yellow;
 }
 

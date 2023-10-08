@@ -4,15 +4,10 @@ import './cart.css';
 import RollInCart from '../elements/cartRoll';
 
 
-//Component for a roll, its price, and options, as would be shown on the products page
+//Component for the cart area
 class Cart extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };    
-  }
-
   render() {
+    // The cart area for if a roll is in the cart
     let cartDisplay = <div className="cartArea">
                         <div className='cartInfo'>
                             <span className="larger-font bold">Shopping Cart ({this.props.rollList.length} Items)</span>
@@ -30,8 +25,10 @@ class Cart extends Component {
                         </div>
                       </div>
     
+    // The cart area for if a roll is not in the cart
     let emptyCartyDisplay = <div className="cartArea bold larger-font">The Cart is Empty!</div>
 
+    // Render conditionally based on cart length
     return (
       <div>
         {this.props.rollList.length===0 ? emptyCartyDisplay : cartDisplay}

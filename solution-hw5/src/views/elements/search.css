@@ -1,24 +1,24 @@
+/* styling for the search bar area */
+
 .searchParent {
     display: flex;
-    justify-content: center;
-    align-items: left;
-    width: 100%;
-    margin: 30px 0px;
+    justify-content: left;
+    width: auto;
+    margin: 30px 30px;
 }
 
-.searchForm {
-    width: 95%;
-}
-
-.searchForm button{
+.searchParent button{
     border: 1px solid gray; 
     border-left: none;
     background-color: rgb(240, 240, 240);
+    height: 35px;
+    width: 80px;
 }  
 
-.searchForm input{
+.searchParent input{
     border: 1px solid gray; 
     width: 200px;
+    height: 35px
 }
 
 .searchParent select{

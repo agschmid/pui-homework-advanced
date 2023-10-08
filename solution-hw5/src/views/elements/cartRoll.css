@@ -1,8 +1,11 @@
+/* Styling for the roll displayed in the cart */
+
 .miniRollParent {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 200px;
+    width: 240px;
+    margin-top: 20px;
 }
 
 .miniRollParent img{
@@ -12,4 +15,8 @@
 .delete {
     text-decoration: underline;
     margin-top: 15px;
+}
+
+.delete:hover {
+    font-size: 18px;
 }

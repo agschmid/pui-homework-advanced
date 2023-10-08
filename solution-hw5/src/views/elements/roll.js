@@ -6,36 +6,41 @@ class RollCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedGlazing: this.props.selectedGlazing,
-      selectedPack: this.props.selectedPack,
+      displayPrice: this.props.basePrice,
+      selectedGlazing: "Keep original",
+      selectedPack: "1",
       glazingPrice: 0,
       packPrice: 1
     };    
   }
 
-
-  // TODO Function that updates price vals in the parent index
-
   // Method to update the current pack and it's price
-  // Was having problems with setting state being async – used this resource for solve
-  // https://techgleanings.com/decoding-the-delays-understanding-setstate-and-how-to-ensure-immediate-updates
-  updatePack(e){
+  updatePack = (e) => {
     let selectedPackValue = e.target.parentNode.querySelector('input:checked + label').textContent
     this.setState({packPrice: Number(e.target.value), selectedPack: selectedPackValue}, () => {
-      this.props.updateRollData(this.props.rollIndex, this.state)
+      this.updatePrice()
     });
   }
 
   // Method to update the current glazing and it's price
-  updateGlazing(e){
+  updateGlazing = (e) => {
     let selectedGlazingValue = e.target.options[e.target.selectedIndex].text
     this.setState({glazingPrice: Number(e.target.value), selectedGlazing: selectedGlazingValue}, () => {
-      this.props.updateRollData(this.props.rollIndex, this.state)
+      this.updatePrice()
     });
   }
 
+  // Method that updates the displayed price value
+  updatePrice = () => {
+    let displayPrice = (this.props.basePrice + this.state.glazingPrice) * this.state.packPrice;
+    this.setState(prevState => ({
+      ...prevState,
+      displayPrice: displayPrice
+    }));    
+  }
+
+
   render() {
-    //TODO Check this
     const packStyle = {
       display: "flex",
       alignItems: "center",
@@ -51,8 +56,19 @@ class RollCard extends Component {
       backgroundColor: "lightgray",
     }
 
+    const hiddenStyle = {
+      display: "none"
+    }
+
+    const showingStyle = {
+      display: "block"
+    }
+
+    // Conditional that sets the style to none if rollShowing is false
+    let rollCardDisplay = this.props.rollShowing ? showingStyle : hiddenStyle;
+
     return (
-        <div className="item">
+        <div className="item" style={rollCardDisplay}>
         <img src={this.props.imageURL} width="280" alt={this.props.imageAlt}/>
         <h1 className="larger-font bold">{this.props.rollName}</h1>
 
@@ -86,12 +102,12 @@ class RollCard extends Component {
           </div>
 
           <div className="item-row">
-            <span className="larger-font bold">$ {this.props.displayPrice.toFixed(2)}</span>
+            <span className="larger-font bold">$ {this.state.displayPrice.toFixed(2)}</span>
             <button className="cart bold larger-font hover-hl item-choice" 
               onClick={() => this.props.clickBuy({roll: this.props.rollName, 
                 glazing: this.state.selectedGlazing, 
                 pack: this.state.selectedPack, 
-                price: this.props.displayPrice,
+                price: this.state.displayPrice,
                 imageURL: this.props.imageURL,
                 imageAlt: this.props.imageAlt})}>
               Add to Cart

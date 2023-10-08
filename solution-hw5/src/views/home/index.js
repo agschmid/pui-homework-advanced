@@ -10,69 +10,51 @@ import Search from '../elements/search';
 // Homepage class is the whole homepage
 class Homepage extends Component {
   // Using state for roll information so I can use map to populate with components
-  // Holding the cart information in state so I can update the cart component
+  // Holding the cart and search information in state so I can update the cart component
   constructor(props) {
     super(props);
     this.state = {
       rollData: [
-          {selectedGlazing: "Keep original",
-          selectedPack: "1",
-          imageURL: "assets/products/original-cinnamon-roll.jpg",
+          {imageURL: "assets/products/original-cinnamon-roll.jpg",
           imageAlt: "A frosted cinnamon roll on a plate with cinnamon sticks",
           rollName: "Original cinnamon roll",
           rollId: "og",
           basePrice: 2.49,
-          displayPrice: 2.49,
           rollShowing: true,
           },
-          {selectedGlazing: "Keep original",
-          selectedPack: "1",
-          imageURL:"assets/products/apple-cinnamon-roll.jpg",
+          {imageURL:"assets/products/apple-cinnamon-roll.jpg",
           imageAlt:"A cinnamon roll on a plate next to a fork",
           rollName:"Apple cinnamon roll",
           rollId:"apple",
           basePrice: 3.49,
-          displayPrice: 3.49,
           rollShowing: true,
           },
-          {selectedGlazing: "Keep original",
-          selectedPack: "1",
-          imageURL:"assets/products/raisin-cinnamon-roll.jpg",
+          {imageURL:"assets/products/raisin-cinnamon-roll.jpg",
           imageAlt:"A cinnamon roll with raisins protruding",
           rollName:"Raisin cinnamon roll",
           rollId:"raisin",
           basePrice:2.99,
-          displayPrice: 2.99,
           rollShowing: true,
           },
-          {selectedGlazing: "Keep original",
-          selectedPack: "1",
-          imageURL:"assets/products/walnut-cinnamon-roll.jpg",
+          {imageURL:"assets/products/walnut-cinnamon-roll.jpg",
           imageAlt:"A cinnamon roll on a black plate with a 2 prong fork",
           rollName:"Walnut cinnamon roll",
           rollId:"walnut",
           basePrice:3.49,
-          displayPrice: 3.49,
           rollShowing: true,
           },
-          {selectedGlazing: "Keep original",
-          selectedPack: "1",
-          imageURL:"assets/products/double-chocolate-cinnamon-roll.jpg",
+          {imageURL:"assets/products/double-chocolate-cinnamon-roll.jpg",
           imageAlt:"A cinnamon roll on a piece of paper with a chocolate glaze and chopped nuts on top",
           rollName:"Double-chocolate cinnamon roll",
           rollId:"choc",
           basePrice:3.99,
-          displayPrice: 3.99,
           rollShowing: true,
           },
-          {selectedGlazing: "Keep original",
-          selectedPack: "1",
-          imageURL:"assets/products/strawberry-cinnamon-roll.jpg",
+          {imageURL:"assets/products/strawberry-cinnamon-roll.jpg",
           imageAlt:"Multiple cinmamon rolls and straberries skewered by sticks",
           rollName:"Strawberry cinnamon roll",
           rollId:"strawberry",
           basePrice:3.99,
-          displayPrice: 3.99,
           rollShowing: true,
         }
       ],
@@ -80,13 +62,15 @@ class Homepage extends Component {
       itemCount: 0, 
       itemTotal: 0,
       showCartPopUp: false,
-      showCartArea: false
+      showCartArea: false,
+      searchQuery: '',
+      showingCount: 6,
     };
   }
 
 
 
-  // Method to update the cart values and show the popup for 3 secs
+  // Method to update the cart values
   updateCart = () => {
 
     // Loop over each roll and add the price to the total
@@ -94,16 +78,16 @@ class Homepage extends Component {
     for (const roll of this.state.rollList){
       totalCost += roll.price
     }
-    // Update the cart displayed on the webpage, and show the popup
+
+    // Update the cart length and total cost
     this.setState(prevState => ({
       ...prevState,
       itemCount: this.state.rollList.length, 
       itemTotal: totalCost
     }))
-
   }
 
-   // Show the cart popup
+  // Method to show the cart popup for 3 seconds
   cartPopUp = () => { 
       this.setState(prevState => ({
         ...prevState,
@@ -116,10 +100,9 @@ class Homepage extends Component {
           showCartPopUp: false
         }));
       }, 3000);
-    }
+  }
   
-  // Add roll associated with a buy button to rollList, and update cart when done
-  // This method is passed across components – it's triggered by RollCard
+  // Add roll associated with a buy button to rollList and update the cart
   addToCart = (rollDetails) => {
     this.setState({rollList: [...this.state.rollList, rollDetails]}, () => {
       this.updateCart();
@@ -127,6 +110,7 @@ class Homepage extends Component {
     });
   };
 
+  // Show/hide the cart menu
   toggleCart = () => {
     this.setState(prevState => ({
       ...prevState,
@@ -134,18 +118,7 @@ class Homepage extends Component {
     }));  
   }
 
-  updateRollData = (rollIndex, rollInfo) => {
-    let rollData = [...this.state.rollData];
-    rollData[rollIndex].selectedPack = rollInfo.selectedPack;
-    rollData[rollIndex].selectedGlazing = rollInfo.selectedGlazing;
-    rollData[rollIndex].displayPrice = (rollData[rollIndex].basePrice + rollInfo.glazingPrice) * rollInfo.packPrice;
-
-    this.setState(prevState => ({
-      ...prevState,
-      rollData: rollData
-    }));    
-  }
-
+  // Delete a roll from the cart at a given index
   deleteRoll = (rollIndex) => {
     let rollList = [...this.state.rollList]
     rollList.splice(rollIndex, 1);
@@ -154,7 +127,7 @@ class Homepage extends Component {
     });
   }
 
-  // TODO: Fix this and be consistent between e and event
+  // Sort the rolls based on a given string and update the state
   sortRolls = (sortBy) => {
     let rollData = [...this.state.rollData]
     switch(sortBy) {
@@ -165,7 +138,7 @@ class Homepage extends Component {
         rollData.sort((roll1, roll2) => (roll1.basePrice > roll2.basePrice) ? 1 : (roll1.basePrice < roll2.basePrice) ? -1 : 0)
         break;
       default:
-        //Should leave as is if default. TODO: Check if I should adjust this.
+        rollData.sort((roll1, roll2) => (roll1.rollName > roll2.rollName) ? 1 : (roll1.rollName < roll2.rollName) ? -1 : 0)
     }
     this.setState(prevState => ({
       ...prevState,
@@ -173,19 +146,45 @@ class Homepage extends Component {
     }));  
   }
 
+  // Capture the current search value
+  updateSearchQuery = (e) => {
+    this.setState(prevState => ({
+      ...prevState,
+      searchQuery: e.target.value
+    }));  
+  }
 
-  // Render the Homepage here, using the imported Navbar and Roll elements
+  // Search through the rolls, and hide any that don't match the searchQuery
+  searchRolls = () => {
+    let rollData = [...this.state.rollData]
+    let showingCount = 0
+    for (let i=0; i<rollData.length; i++){
+      let lowerQuery = this.state.searchQuery.toLowerCase();
+      let lowerRollName = rollData[i].rollName.toLowerCase();
+      rollData[i].rollShowing = lowerRollName.includes(lowerQuery)
+      if (rollData[i].rollShowing) showingCount++;
+    }
+    
+    this.setState(prevState => ({
+      ...prevState,
+      rollData: rollData,
+      showingCount: showingCount
+    }));  
+  }
+
+  // Render the Homepage here, using the imported Navbar, Roll, Cart, and Search elements
   render() {
     return (
       <div>
         <NavBar 
-          itemCount = {this.state.itemCount}
-          itemTotal = {this.state.itemTotal}
           cartUpdated = {this.state.showCartPopUp}
           recentRoll = {this.state.rollList[this.state.rollList.length-1]}
           toggleCart={this.toggleCart}
         />
-        <Search sortRolls={this.sortRolls}/>
+        <Search 
+          sortRolls={this.sortRolls}
+          updateSearchQuery={this.updateSearchQuery}
+          searchRolls={this.searchRolls}/>
         {this.state.showCartArea && 
           <Cart 
             rollList ={this.state.rollList}
@@ -194,20 +193,18 @@ class Homepage extends Component {
           />
         }
         <main>
+        {(!this.state.showingCount) && <span className="largest-font bold">No match!</span>}
         {this.state.rollData.map((roll, idx) => {
             return <RollCard
-              key={idx}
+              key={roll.rollName}
               rollIndex={idx}
               imageURL={roll.imageURL}
               imageAlt={roll.imageAlt}
               rollName={roll.rollName}
               rollId={roll.rollId}
               basePrice={roll.basePrice}
-              displayPrice={roll.displayPrice}
-              selectedGlazing={roll.selectedGlazing}
-              selectedPack={roll.selectedPack}
               clickBuy={this.addToCart}
-              updateRollData={this.updateRollData}
+              rollShowing={roll.rollShowing}
               />;
           })}
         </main>
