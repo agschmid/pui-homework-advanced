@@ -181,10 +181,6 @@ class Homepage extends Component {
           recentRoll = {this.state.rollList[this.state.rollList.length-1]}
           toggleCart={this.toggleCart}
         />
-        <Search 
-          sortRolls={this.sortRolls}
-          updateSearchQuery={this.updateSearchQuery}
-          searchRolls={this.searchRolls}/>
         {this.state.showCartArea && 
           <Cart 
             rollList ={this.state.rollList}
@@ -192,6 +188,10 @@ class Homepage extends Component {
             deleteRoll = {this.deleteRoll}
           />
         }
+        <Search 
+          sortRolls={this.sortRolls}
+          updateSearchQuery={this.updateSearchQuery}
+          searchRolls={this.searchRolls}/>
         <main>
         {(!this.state.showingCount) && <span className="largest-font bold">No match!</span>}
         {this.state.rollData.map((roll, idx) => {
