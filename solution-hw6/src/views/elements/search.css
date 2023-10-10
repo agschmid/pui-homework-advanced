@@ -1,0 +1,27 @@
+/* styling for the search bar area */
+
+.searchParent {
+    display: flex;
+    justify-content: left;
+    width: auto;
+    margin: 30px 30px;
+}
+
+.searchParent button{
+    border: 1px solid gray; 
+    border-left: none;
+    background-color: rgb(240, 240, 240);
+    height: 35px;
+    width: 80px;
+}  
+
+.searchParent input{
+    border: 1px solid gray; 
+    width: 200px;
+    height: 35px
+}
+
+.searchParent select{
+    width: 180px;
+    margin-left: 50px;
+}
