@@ -58,9 +58,7 @@ class Homepage extends Component {
           rollShowing: true,
         }
       ],
-      rollList : [],
-      itemCount: 0, 
-      itemTotal: 0,
+      rollList : JSON.parse(localStorage.getItem("rollList")) || [],
       showCartPopUp: false,
       showCartArea: false,
       searchQuery: '',
@@ -68,23 +66,26 @@ class Homepage extends Component {
     };
   }
 
+//TO DO - why do we need to store the data when mounted?
+  // // Store the roll data when the homepage is first mounted
+  // componentDidMount() {
+  //   localStorage.setItem("rollList", JSON.stringify(this.state.rollList));
+  // }
 
+  // // Store the roll data when the homepage is updated
+  // componentDidUpdate() {
+  //   localStorage.setItem("rollList", JSON.stringify(this.state.rollList));
+  // }
 
-  // Method to update the cart values
-  updateCart = () => {
-
+  // Function that can calculate total cost TODO: Check if it's okay to have a function like this outside of render?
+  calcTotalCost = () => {
     // Loop over each roll and add the price to the total
     let totalCost = 0
     for (const roll of this.state.rollList){
       totalCost += roll.price
     }
 
-    // Update the cart length and total cost
-    this.setState(prevState => ({
-      ...prevState,
-      itemCount: this.state.rollList.length, 
-      itemTotal: totalCost
-    }))
+    return totalCost
   }
 
   // Method to show the cart popup for 3 seconds
@@ -105,8 +106,8 @@ class Homepage extends Component {
   // Add roll associated with a buy button to rollList and update the cart
   addToCart = (rollDetails) => {
     this.setState({rollList: [...this.state.rollList, rollDetails]}, () => {
-      this.updateCart();
       this.cartPopUp();
+      localStorage.setItem("rollList", JSON.stringify(this.state.rollList));  // TODO check this use is okay
     });
   };
 
@@ -122,9 +123,11 @@ class Homepage extends Component {
   deleteRoll = (rollIndex) => {
     let rollList = [...this.state.rollList]
     rollList.splice(rollIndex, 1);
-    this.setState({rollList: rollList}, () => {
-      this.updateCart();
-    });
+    localStorage.setItem("rollList", JSON.stringify(rollList)); // TODO check this use is okay
+    this.setState(prevState => ({
+      ...prevState,
+      rollList: rollList
+    }));  
   }
 
   // Sort the rolls based on a given string and update the state
@@ -184,7 +187,7 @@ class Homepage extends Component {
         {this.state.showCartArea && 
           <Cart 
             rollList ={this.state.rollList}
-            itemTotal = {this.state.itemTotal}
+            itemTotal = {this.calcTotalCost()} //TODO Check this is allowed?
             deleteRoll = {this.deleteRoll}
           />
         }
