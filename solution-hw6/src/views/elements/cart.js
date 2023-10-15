@@ -10,7 +10,7 @@ class Cart extends Component {
     // The cart area for if a roll is in the cart
     let cartDisplay = <div className="cartArea">
                         <div className='cartInfo'>
-                            <span className="larger-font bold">Shopping Cart ({this.props.rollList.length} Items)</span>
+                            <span className="larger-font bold">Shopping Cart ({this.props.rollList.length} Item{this.props.rollList.length!==1 && 's'})</span>
                             <span className="larger-font bold">Total: ${this.props.itemTotal.toFixed(2)}</span>
                         </div>
                         <div className="cartRollParent">
